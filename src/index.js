@@ -1,20 +1,143 @@
 // https://reactjs.org/tutorial/tutorial.html
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-function Square(props) {
-	const className = 'square' + (props.highlighted ? ' highlighted' : '');
+//////////////////////////////////////////////////////////////////////////
+////////////////////////////////// CLOCK /////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const Clock = () => {
+	const [state, setState] = useState({ date: new Date() });
+
+	const tick = () => setState({ date: new Date() });
+
+	useEffect(() => {
+		const timerId = setInterval(() => tick(), 1000);
+		return () => clearInterval(timerId);
+	});
 
 	return (
-		<button className={className} onClick={props.onClick}>
-			{props.value}
-		</button>
+		<div>
+			<h1>Hello, world!</h1>
+			<h2>It is {state.date.toLocaleTimeString()}.</h2>
+		</div>
 	);
+};
+
+//////////////////////////////////////////////////////////////////////////
+/////////////////////////////// CALCULATOR ///////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const scaleNames = {
+	c: 'Celsius',
+	f: 'Fahrenheit',
+};
+
+class TemperatureInput extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleChange = this.handleChange.bind(this);
+	}
+
+	handleChange(e) {
+		this.props.onTemperatureChange(e.target.value);
+	}
+
+	render() {
+		const temperature = this.props.temperature;
+		const scale = this.props.scale;
+		return (
+			<fieldset>
+				<legend>Enter temperature in {scaleNames[scale]}:</legend>
+				<input value={temperature} onChange={this.handleChange} />
+			</fieldset>
+		);
+	}
 }
 
-function Board(props) {
+function BoilingVerdict(props) {
+	if (props.celsius >= 100) {
+		return <p>The water would boil.</p>;
+	}
+	return <p>The water would not boil.</p>;
+}
+
+class Calculator extends React.Component {
+	constructor(props) {
+		super(props);
+		this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+		this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+		this.state = { temperature: '', scale: 'c' };
+	}
+
+	handleCelsiusChange(temperature) {
+		this.setState({ scale: 'c', temperature });
+	}
+
+	handleFahrenheitChange(temperature) {
+		this.setState({ scale: 'f', temperature });
+	}
+
+	render() {
+		const scale = this.state.scale;
+		const temperature = this.state.temperature;
+		const celsius =
+			scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+		const fahrenheit =
+			scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+
+		return (
+			<div>
+				<TemperatureInput
+					scale='c'
+					temperature={celsius}
+					onTemperatureChange={this.handleCelsiusChange}
+				/>
+				<TemperatureInput
+					scale='f'
+					temperature={fahrenheit}
+					onTemperatureChange={this.handleFahrenheitChange}
+				/>
+				<BoilingVerdict celsius={parseFloat(celsius)} />
+			</div>
+		);
+	}
+}
+
+function tryConvert(temperature, convert) {
+	const input = parseFloat(temperature);
+	if (Number.isNaN(input)) {
+		return '';
+	}
+	const output = convert(input);
+	const rounded = Math.round(output * 1000) / 1000;
+	return rounded.toString();
+}
+
+function toCelsius(fahrenheit) {
+	return ((fahrenheit - 32) * 5) / 9;
+}
+
+function toFahrenheit(celsius) {
+	return (celsius * 9) / 5 + 32;
+}
+
+//////////////////////////////////////////////////////////////////////////
+////////////////////////////////// GAME //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const Square = (props) => (
+	<button
+		className={'square' + (props.highlighted ? ' highlighted' : '')}
+		onClick={props.onClick}
+	>
+		{props.value}
+	</button>
+);
+
+const Board = (props) => {
 	const renderSquare = (i) => {
 		return (
 			<Square
@@ -43,9 +166,9 @@ function Board(props) {
 			));
 
 	return <div>{renderRows()}</div>;
-}
+};
 
-function Game() {
+const Game = () => {
 	const [state, setState] = useState({
 		history: [
 			{
@@ -148,11 +271,25 @@ function Game() {
 	};
 
 	return render();
-}
+};
+
+const Root = () => (
+	<div>
+		<div>
+			<Clock />
+		</div>
+		<div>
+			<Calculator />
+		</div>
+		<div>
+			<Game />
+		</div>
+	</div>
+);
 
 // ========================================
 
-ReactDOM.render(<Game />, document.getElementById('root'));
+ReactDOM.render(<Root />, document.getElementById('root'));
 
 function calculateWinner(squares) {
 	const lines = [
