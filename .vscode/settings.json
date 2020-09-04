@@ -1,0 +1,11 @@
+{
+	"editor.formatOnSave": true,
+	"javascript.format.enable": false,
+	"prettier.useTabs": true,
+	"prettier.jsxSingleQuote": true,
+	"prettier.singleQuote": true,
+	"eslint.workingDirectories": [
+		"./"
+	],
+	"autoimport.filesToScan": "**/*.{js, jsx, ts, tsx}"
+}
