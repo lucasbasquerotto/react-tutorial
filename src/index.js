@@ -19,10 +19,10 @@ const Clock = () => {
 	});
 
 	return (
-		<div>
+		<>
 			<h1>Hello, world!</h1>
 			<h2>It is {state.date.toLocaleTimeString()}.</h2>
-		</div>
+		</>
 	);
 };
 
@@ -73,7 +73,7 @@ const Calculator = () => {
 		scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
 
 	return (
-		<div>
+		<>
 			<TemperatureInput
 				scale='c'
 				temperature={celsius}
@@ -85,7 +85,7 @@ const Calculator = () => {
 				onTemperatureChange={handleFahrenheitChange}
 			/>
 			<BoilingVerdict celsius={parseFloat(celsius)} />
-		</div>
+		</>
 	);
 };
 
@@ -106,6 +106,41 @@ function toCelsius(fahrenheit) {
 function toFahrenheit(celsius) {
 	return (celsius * 9) / 5 + 32;
 }
+
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////// DIALOG /////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const FancyBorder = (props) => (
+	<div className={'FancyBorder FancyBorder-' + props.color}>
+		{props.children}
+	</div>
+);
+
+const Dialog = (props) => (
+	<FancyBorder color='blue'>
+		<h1 className='Dialog-title'>{props.title}</h1>
+		<p className='Dialog-message'>{props.message}</p>
+		{props.children}
+	</FancyBorder>
+);
+
+const SignUpDialog = () => {
+	const [state, setState] = useState({ login: '' });
+
+	const handleChange = (e) => setState({ login: e.target.value });
+	const handleSignUp = () => alert(`Welcome aboard, ${state.login}!`);
+
+	return (
+		<Dialog
+			title='Mars Exploration Program'
+			message='How should we refer to you?'
+		>
+			<input value={state.login} onChange={handleChange} />
+			<button onClick={handleSignUp}>Sign Me Up!</button>
+		</Dialog>
+	);
+};
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// GAME //////////////////////////////////
@@ -148,7 +183,7 @@ const Board = (props) => {
 				</div>
 			));
 
-	return <div>{renderRows()}</div>;
+	return <>{renderRows()}</>;
 };
 
 const Game = () => {
@@ -242,8 +277,8 @@ const Game = () => {
 					/>
 				</div>
 				<div className='game-info'>
-					<div>{status}</div>
-					<div>
+					<div className='status'>{status}</div>
+					<div className='order-description'>
 						Order: {orderDescription}{' '}
 						<button onClick={() => toggleHistory()}>Toggle</button>
 					</div>
@@ -255,24 +290,6 @@ const Game = () => {
 
 	return render();
 };
-
-const Root = () => (
-	<div>
-		<div>
-			<Clock />
-		</div>
-		<div>
-			<Calculator />
-		</div>
-		<div>
-			<Game />
-		</div>
-	</div>
-);
-
-// ========================================
-
-ReactDOM.render(<Root />, document.getElementById('root'));
 
 function calculateWinner(squares) {
 	const lines = [
@@ -293,3 +310,187 @@ function calculateWinner(squares) {
 	}
 	return null;
 }
+
+//////////////////////////////////////////////////////////////////////////
+//////////////////////////////// PRODUCTS ////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const ProductCategoryRow = (props) => (
+	<tr>
+		<th colSpan='2'>{props.category}</th>
+	</tr>
+);
+
+const ProductRow = (props) => {
+	const product = props.product;
+	const name = product.stocked ? (
+		product.name
+	) : (
+		<span style={{ color: 'red' }}>{product.name}</span>
+	);
+
+	return (
+		<tr>
+			<td>{name}</td>
+			<td>{product.price}</td>
+		</tr>
+	);
+};
+
+const ProductTable = (props) => {
+	const filterText = props.filterText;
+	const inStockOnly = props.inStockOnly;
+
+	const rows = [];
+	let lastCategory = null;
+
+	props.products.forEach((product) => {
+		if (product.name.indexOf(filterText) === -1) {
+			return;
+		}
+		if (inStockOnly && !product.stocked) {
+			return;
+		}
+		if (product.category !== lastCategory) {
+			rows.push(
+				<ProductCategoryRow
+					key={product.category}
+					category={product.category}
+				/>
+			);
+		}
+		rows.push(<ProductRow product={product} key={product.name} />);
+		lastCategory = product.category;
+	});
+
+	return (
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Price</th>
+				</tr>
+			</thead>
+			<tbody>{rows}</tbody>
+		</table>
+	);
+};
+
+const SearchBar = (props) => {
+	const handleFilterTextChange = (e) =>
+		props.onFilterTextChange(e.target.value);
+	const handleInStockChange = (e) => props.onInStockChange(e.target.checked);
+
+	return (
+		<form>
+			<input
+				type='text'
+				placeholder='Search...'
+				value={props.filterText}
+				onChange={handleFilterTextChange}
+			/>
+			<p>
+				<input
+					type='checkbox'
+					checked={props.inStockOnly}
+					onChange={handleInStockChange}
+				/>{' '}
+				Only show products in stock
+			</p>
+		</form>
+	);
+};
+
+const FilterableProductTable = (props) => {
+	const [state, setState] = useState({
+		filterText: '',
+		inStockOnly: false,
+	});
+
+	const handleFilterTextChange = (filterText) =>
+		setState((s) => ({ ...s, filterText }));
+	const handleInStockChange = (inStockOnly) =>
+		setState((s) => ({ ...s, inStockOnly }));
+
+	return (
+		<>
+			<SearchBar
+				filterText={state.filterText}
+				inStockOnly={state.inStockOnly}
+				onFilterTextChange={handleFilterTextChange}
+				onInStockChange={handleInStockChange}
+			/>
+			<ProductTable
+				products={props.products}
+				filterText={state.filterText}
+				inStockOnly={state.inStockOnly}
+			/>
+		</>
+	);
+};
+
+const PRODUCTS = [
+	{
+		category: 'Sporting Goods',
+		price: '$49.99',
+		stocked: true,
+		name: 'Football',
+	},
+	{
+		category: 'Sporting Goods',
+		price: '$9.99',
+		stocked: true,
+		name: 'Baseball',
+	},
+	{
+		category: 'Sporting Goods',
+		price: '$29.99',
+		stocked: false,
+		name: 'Basketball',
+	},
+	{
+		category: 'Electronics',
+		price: '$99.99',
+		stocked: true,
+		name: 'iPod Touch',
+	},
+	{
+		category: 'Electronics',
+		price: '$399.99',
+		stocked: false,
+		name: 'iPhone 5',
+	},
+	{ category: 'Electronics', price: '$199.99', stocked: true, name: 'Nexus 7' },
+];
+
+const Products = () => <FilterableProductTable products={PRODUCTS} />;
+
+//////////////////////////////////////////////////////////////////////////
+////////////////////////////////// ROOT //////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+const Root = () => (
+	<div className='root-container'>
+		<div className='clock'>
+			<Clock />
+		</div>
+		<div className='calculator'>
+			<Calculator />
+		</div>
+		<div className='sign-up-dialog'>
+			<SignUpDialog />
+		</div>
+		<div className='products'>
+			<Products />
+		</div>
+		<div className='game'>
+			<Game />
+		</div>
+	</div>
+);
+
+//////////////////////////////////////////////////////////////////////////
+///////////////////////////////// RENDER /////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
+ReactDOM.render(<Root />, document.getElementById('root'));

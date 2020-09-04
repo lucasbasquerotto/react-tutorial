@@ -3,6 +3,12 @@ body {
 	margin: 20px;
 }
 
+.root-container > * {
+	margin-bottom: 10px;
+	border: 1px solid #666;
+	padding: 10px;
+}
+
 ol,
 ul {
 	padding-left: 30px;
