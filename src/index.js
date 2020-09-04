@@ -70,26 +70,26 @@ function Game() {
 		squares[i] = state.xIsNext ? 'X' : 'O';
 		const col = (i % 3) + 1;
 		const row = Math.trunc(i / 3) + 1;
-		setState({
+		setState((s) => ({
 			history: history.concat([{ squares, col, row }]),
 			stepNumber: history.length,
-			xIsNext: !state.xIsNext,
-		});
+			xIsNext: !s.xIsNext,
+		}));
 	};
 
 	const jumpTo = (step) => {
-		return setState({
-			...state,
+		return setState((s) => ({
+			...s,
 			stepNumber: step,
 			xIsNext: step % 2 === 0,
-		});
+		}));
 	};
 
 	const toggleHistory = () => {
-		return setState({
-			...state,
-			historyDesc: !state.historyDesc,
-		});
+		return setState((s) => ({
+			...s,
+			historyDesc: !s.historyDesc,
+		}));
 	};
 
 	const render = () => {
