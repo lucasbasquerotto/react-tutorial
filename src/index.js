@@ -1,8 +1,11 @@
 // https://reactjs.org/tutorial/tutorial.html
 /* eslint-disable react/prop-types */
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import ContextApp from './context/app';
 import './index.css';
+import Portal from './portal/portal';
+import MouseTracker from './renderProps/index';
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////
@@ -485,6 +488,15 @@ const Root = () => (
 		</div>
 		<div className='game'>
 			<Game />
+		</div>
+		<div className='context'>
+			<ContextApp />
+		</div>
+		<div className='portal'>
+			<Portal />
+		</div>
+		<div className='mouse-tracker'>
+			<MouseTracker />
 		</div>
 	</div>
 );

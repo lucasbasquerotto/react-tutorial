@@ -9,22 +9,22 @@ body {
 	padding: 10px;
 }
 
-ol,
-ul {
+.game ol,
+.game ul {
 	padding-left: 30px;
 }
 
-.board-row:after {
+.game .board-row:after {
 	clear: both;
 	content: '';
 	display: table;
 }
 
-.status {
+.game .status {
 	margin-bottom: 10px;
 }
 
-.square {
+.game .square {
 	background: #fff;
 	border: 1px solid #999;
 	float: left;
@@ -39,15 +39,15 @@ ul {
 	width: 34px;
 }
 
-.square:focus {
+.game .square:focus {
 	outline: none;
 }
 
-.square.highlighted {
+.game .square.highlighted {
 	background-color: #61dadf;
 }
 
-.kbd-navigation .square:focus {
+.game .kbd-navigation .square:focus {
 	background: #ddd;
 }
 
@@ -56,6 +56,30 @@ ul {
 	flex-direction: row;
 }
 
-.game-info {
+.game .game-info {
 	margin-left: 20px;
+}
+
+#modal-root {
+	position: relative;
+	z-index: 999;
+}
+
+.portal .app {
+	height: 10em;
+	width: 10em;
+	background: lightblue;
+	overflow: hidden;
+}
+
+#modal-root .modal {
+	background-color: rgba(0, 0, 0, 0.5);
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
