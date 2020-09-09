@@ -1,18 +1,22 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from 'react';
+import React, { useState, FunctionComponent } from 'react';
 import { ThemeContext, themes } from './theme-context';
 import ThemedButton from './themed-button';
 
 // An intermediate component that uses the ThemedButton
-const Toolbar = (props) => (
+const Toolbar: FunctionComponent<{ changeTheme: () => void }> = (props) => (
 	<ThemedButton onClick={props.changeTheme}>Change Theme</ThemedButton>
 );
 
-const Page = ({ children }) => <div className='page'>{children}</div>;
+const Page: FunctionComponent<{}> = ({ children }) => (
+	<div className='page'>{children}</div>
+);
 
-const Section = ({ children }) => <div className='section'>{children}</div>;
+const Section: FunctionComponent<{}> = ({ children }) => (
+	<div className='section'>{children}</div>
+);
 
-const ContextApp = () => {
+const ContextApp: FunctionComponent<{}> = () => {
 	const [state, setState] = useState({ theme: themes.light });
 
 	const toggleTheme = () =>

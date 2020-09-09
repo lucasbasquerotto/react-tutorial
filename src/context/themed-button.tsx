@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
-import { ThemeContext } from './theme-context';
+import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
+import { Theme, ThemeContext } from './theme-context';
 
-const ThemedButton = (props) => {
-	const renderBtn = (theme) => (
+const ThemedButton: FunctionComponent<ButtonHTMLAttributes<
+	HTMLButtonElement
+>> = (props) => {
+	const renderBtn = (theme: Theme) => (
 		<button {...props} style={{ backgroundColor: theme.background }}>
 			{props.children}
 		</button>

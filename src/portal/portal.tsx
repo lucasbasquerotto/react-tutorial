@@ -1,6 +1,6 @@
 // https://reactjs.org/tutorial/tutorial.html
 /* eslint-disable react/prop-types */
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 
 // This contianer is sibling with the root container
@@ -8,8 +8,8 @@ const modalRoot = document.getElementById('modal-root');
 
 // Let's create a Modal component that is an abstraction around
 // the portal API.
-const Modal = ({ children }) => {
-	const elRef = useRef(null);
+const Modal: FunctionComponent<{}> = ({ children }) => {
+	const elRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
 	if (!elRef.current) {
 		elRef.current = document.createElement('div');
@@ -21,12 +21,16 @@ const Modal = ({ children }) => {
 	const el = elRef.current;
 
 	useEffect(() => {
-		// Append the element into the DOM on mount. We'll render
-		// into the modal container element (see the HTML tab).
-		modalRoot.appendChild(el);
+		if (modalRoot) {
+			// Append the element into the DOM on mount. We'll render
+			// into the modal container element (see the HTML tab).
+			modalRoot.appendChild(el);
 
-		// Remove the element from the DOM when we unmount
-		return () => modalRoot.removeChild(el);
+			// Remove the element from the DOM when we unmount
+			return () => {
+				modalRoot.removeChild(el);
+			};
+		}
 	});
 
 	// Use a portal to render the children into the element
@@ -41,7 +45,7 @@ const Modal = ({ children }) => {
 // The Modal component is a normal React component, so we can
 // render it wherever we like without needing to know that it's
 // implemented with portals.
-const Portal = () => {
+const Portal: FunctionComponent<{}> = () => {
 	const [state, setState] = useState({ showModal: false, counter: 0 });
 
 	const increment = () => setState((s) => ({ ...s, counter: s.counter + 1 }));

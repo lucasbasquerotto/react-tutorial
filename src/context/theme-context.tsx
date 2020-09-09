@@ -1,6 +1,11 @@
 import React from 'react';
 
-export const themes = {
+export interface Theme {
+	foreground: string;
+	background: string;
+}
+
+export const themes: { [key: string]: Theme } = {
 	light: {
 		foreground: '#000000',
 		background: '#eeeeee',
