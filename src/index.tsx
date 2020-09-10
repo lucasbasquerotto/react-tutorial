@@ -24,7 +24,7 @@ const Clock = () => {
 	useEffect(() => {
 		const timerId = setInterval(() => tick(), 1000);
 		return () => clearInterval(timerId);
-	});
+	}, []);
 
 	return (
 		<>
