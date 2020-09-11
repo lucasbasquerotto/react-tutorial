@@ -10,7 +10,7 @@ import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
 import './index.css';
 import Portal from './portal/portal';
-import MouseTracker from './renderProps/index';
+import { MouseTracker } from './renderProps/index';
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////

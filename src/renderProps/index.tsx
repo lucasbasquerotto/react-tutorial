@@ -18,16 +18,17 @@ interface MouseStateProp {
 	mouse: MouseState;
 }
 
-const Cat: FunctionComponent<MouseStateProp> = (props) => {
-	const mouse = props.mouse;
-	return (
-		<img
-			src='/logo192.png'
-			alt='cat'
-			style={{ position: 'absolute', left: mouse.x - 96, top: mouse.y - 96 }}
-		/>
-	);
-};
+const Cat: FunctionComponent<MouseStateProp> = (props) => (
+	<img
+		src='/logo192.png'
+		alt='cat'
+		style={{
+			position: 'absolute',
+			left: props.mouse.x - 96,
+			top: props.mouse.y - 96,
+		}}
+	/>
+);
 
 interface MouseProps {
 	render: (state: MouseState) => ReactNode;
@@ -94,4 +95,4 @@ const MouseTracker: FunctionComponent<{}> = () => (
 	</>
 );
 
-export default MouseTracker;
+export { Cat, Mouse, MouseTracker };
