@@ -8,6 +8,7 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
+import { FetchApp } from './fetch';
 import './index.css';
 import Portal from './portal/portal';
 import { MouseTracker } from './renderProps/index';
@@ -558,6 +559,9 @@ const Root = () => (
 		</div>
 		<div className='mouse-tracker'>
 			<MouseTracker />
+		</div>
+		<div className='fetch'>
+			<FetchApp />
 		</div>
 	</div>
 );
