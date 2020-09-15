@@ -1,16 +1,17 @@
 // https://reactjs.org/tutorial/tutorial.html
 /* eslint-disable react/prop-types */
 import React, {
-	useEffect,
-	useState,
 	FunctionComponent,
 	ReactNode,
+	useEffect,
+	useState,
 } from 'react';
 import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
 import { FetchApp } from './fetch';
 import './index.css';
 import Portal from './portal/portal';
+import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
 
 //////////////////////////////////////////////////////////////////////////
@@ -562,6 +563,9 @@ const Root = () => (
 		</div>
 		<div className='fetch'>
 			<FetchApp />
+		</div>
+		<div className='redux-counter'>
+			<ReduxApp />
 		</div>
 	</div>
 );
