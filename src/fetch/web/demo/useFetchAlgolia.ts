@@ -1,6 +1,6 @@
-import { DataInfo } from '../../common/lib/data-info';
-import { useDefaultDataApi } from '../../common/lib/hook';
-import HttpUtil, { HttpResponse } from '../../common/lib/util';
+import { DataInfo } from '../../common/lib/DataInfo';
+import { useDefaultDataApi } from '../../common/lib/useDataApi';
+import HttpUtil, { HttpResponse } from '../../common/lib/HttpUtil';
 
 interface AlgoliaHits {
 	objectID: string;

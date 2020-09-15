@@ -6,19 +6,18 @@ x-logging:
       max-size: 50m
 
 services:
-
   react:
     image: local/react
     hostname: react
     volumes:
-    - ./src:/usr/app/src:rw
-    - ./env:/usr/app/env:ro
-    - .:/external:rw
+      - ./src:/usr/app/src:rw
+      - ./env:/usr/app/env:ro
+      - .:/external:rw
     ports:
-    - "8080:80"
-    - "3000:3000"
+      - '8080:80'
+      - '4000:4000'
     extra_hosts:
-    - "host.docker.internal:$DOCKER_HOST_IP"
+      - 'host.docker.internal:$DOCKER_HOST_IP'
     logging: *logging
     command: sleep infinity
 
@@ -26,11 +25,11 @@ services:
     image: local/react
     hostname: react
     volumes:
-    - .:/usr/app:rw
+      - .:/usr/app:rw
     ports:
-    - "8080:80"
-    - "3000:3000"
+      - '8080:80'
+      - '4000:4000'
     extra_hosts:
-    - "host.docker.internal:$DOCKER_HOST_IP"
+      - 'host.docker.internal:$DOCKER_HOST_IP'
     logging: *logging
     command: sleep infinity

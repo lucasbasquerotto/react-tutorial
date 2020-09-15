@@ -1,4 +1,4 @@
-import { DataInfo } from './data-info';
+import { DataInfo } from './DataInfo';
 
 export interface DataApiAction<T, E> {
 	type: string;

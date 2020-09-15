@@ -1,5 +1,5 @@
 import React, { FunctionComponent } from 'react';
-import { DataInfo } from '../../common/lib/data-info';
+import { DataInfo } from '../../common/lib/DataInfo';
 
 const LoadDataDefault: FunctionComponent<DataInfo<unknown, unknown>> = ({
 	isError,

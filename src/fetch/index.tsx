@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import { useFetchAlgolia } from './web/demo';
-import { LoadDataDefault } from './web/lib/load-data';
+import { useFetchAlgolia } from './web/demo/useFetchAlgolia';
+import { LoadDataDefault } from './web/lib/LoadDataDefault';
 
 const initialQuery = 'redux';
 
 function FetchApp() {
 	const [query, setQuery] = useState(initialQuery);
-	const [{ data, isLoading, isError }, doFetch] = useFetchAlgolia(initialQuery);
+	const [state, doFetch] = useFetchAlgolia(initialQuery);
 
 	return (
 		<>
@@ -24,9 +24,9 @@ function FetchApp() {
 				<button type='submit'>Search</button>
 			</form>
 
-			<LoadDataDefault isError={isError} isLoading={isLoading}>
+			<LoadDataDefault {...state}>
 				<ul>
-					{data?.hits.map((item) => (
+					{state.data?.hits.map((item) => (
 						<li key={item.objectID}>
 							<a href={item.url}>{item.title}</a>
 						</li>
