@@ -8,8 +8,11 @@ import React, {
 } from 'react';
 import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
+import { EmotionApp } from './emotion/emotion';
 import { FetchApp } from './fetch';
 import './index.css';
+import { JssApp } from './jss/jss';
+import { MaterialUiApp } from './material/material';
 import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
@@ -566,6 +569,15 @@ const Root = () => (
 		</div>
 		<div className='redux-counter'>
 			<ReduxApp />
+		</div>
+		<div className='jss'>
+			<JssApp />
+		</div>
+		<div className='emotion'>
+			<EmotionApp />
+		</div>
+		<div className='material-ui'>
+			<MaterialUiApp />
 		</div>
 	</div>
 );
