@@ -539,47 +539,49 @@ const Products = () => <FilterableProductTable products={PRODUCTS} />;
 //////////////////////////////////////////////////////////////////////////
 
 const Root = () => (
-	<div className='root-container'>
-		<div className='clock'>
-			<Clock />
+	<>
+		<div className='root-container'>
+			<div className='clock'>
+				<Clock />
+			</div>
+			<div className='calculator'>
+				<Calculator />
+			</div>
+			<div className='sign-up-dialog'>
+				<SignUpDialog />
+			</div>
+			<div className='products'>
+				<Products />
+			</div>
+			<div className='game'>
+				<Game />
+			</div>
+			<div className='context'>
+				<ContextApp />
+			</div>
+			<div className='portal'>
+				<Portal />
+			</div>
+			<div className='mouse-tracker'>
+				<MouseTracker />
+			</div>
+			<div className='fetch'>
+				<FetchApp />
+			</div>
+			<div className='redux-counter'>
+				<ReduxApp />
+			</div>
+			<div className='jss'>
+				<JssApp />
+			</div>
+			<div className='emotion'>
+				<EmotionApp />
+			</div>
+			<div className='material-ui'>
+				<MaterialUiApp />
+			</div>
 		</div>
-		<div className='calculator'>
-			<Calculator />
-		</div>
-		<div className='sign-up-dialog'>
-			<SignUpDialog />
-		</div>
-		<div className='products'>
-			<Products />
-		</div>
-		<div className='game'>
-			<Game />
-		</div>
-		<div className='context'>
-			<ContextApp />
-		</div>
-		<div className='portal'>
-			<Portal />
-		</div>
-		<div className='mouse-tracker'>
-			<MouseTracker />
-		</div>
-		<div className='fetch'>
-			<FetchApp />
-		</div>
-		<div className='redux-counter'>
-			<ReduxApp />
-		</div>
-		<div className='jss'>
-			<JssApp />
-		</div>
-		<div className='emotion'>
-			<EmotionApp />
-		</div>
-		<div className='material-ui'>
-			<MaterialUiApp />
-		</div>
-	</div>
+	</>
 );
 
 //////////////////////////////////////////////////////////////////////////
