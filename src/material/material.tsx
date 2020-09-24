@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import { green, grey, lime } from '@material-ui/core/colors';
 import { ThemeProvider } from '@material-ui/core/styles';
 import React, { FunctionComponent, useState } from 'react';
+import CustomizedHook from './autocomplete';
 import { createMyTheme, ThemeColor } from './theme';
 
 const MyTypography: FunctionComponent<{}> = () => (
@@ -72,6 +73,7 @@ export function MaterialUiApp() {
 				<MyTypography />
 			</Card>
 			<Hello />
+			<CustomizedHook />
 		</ThemeProvider>
 	);
 }
