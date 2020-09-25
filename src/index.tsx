@@ -12,6 +12,7 @@ import { EmotionApp } from './emotion/emotion';
 import { MyContainer } from './emotion/test';
 import { FetchApp } from './fetch';
 import './index.css';
+import { IntlApp } from './intl';
 import { JssApp } from './jss/jss';
 import { MaterialUiApp } from './material/material';
 import Portal from './portal/portal';
@@ -583,6 +584,9 @@ const Root = () => (
 			</div>
 			<div className="test">
 				<MyContainer />
+			</div>
+			<div className="intl">
+				<IntlApp />
 			</div>
 		</div>
 	</>

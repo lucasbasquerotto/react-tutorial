@@ -9,3 +9,5 @@ const counterSlice = createSlice({
 		},
 	},
 });
+
+counterSlice && (() => {})();

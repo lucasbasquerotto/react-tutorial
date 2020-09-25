@@ -1,0 +1,8 @@
+{
+	"app.header": "Modifiez les fichiers et enregistrez-les pour recharger",
+	"app.content": "Apprendre React",
+	"app.channel.plug": "Tutoriel présenté par {blogName}",
+	"app.plural": "{amount, plural, =0 {no présenté} one {# one tutoriel} few {# several apprendre} many {# lots of enregistrez} other {# wrong fichiers}}",
+	"myMessage": "Aujourd'hui, c'est le {ts, date, ::yyyyMMdd}",
+	"foo": "Modifiez foo {test}"
+}

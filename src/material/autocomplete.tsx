@@ -1,4 +1,3 @@
-/* eslint-disable no-use-before-define */
 import React from 'react';
 import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import NoSsr from '@material-ui/core/NoSsr';
@@ -126,6 +125,11 @@ const Listbox = styled('ul')`
 	}
 `;
 
+interface FilmOptionType {
+	title: string;
+	year: number;
+}
+
 export default function CustomizedHook() {
 	const {
 		getRootProps,
@@ -163,7 +167,7 @@ export default function CustomizedHook() {
 						{groupedOptions.map((option, index) => (
 							<li {...getOptionProps({ option, index })}>
 								<span>{option.title}</span>
-								<CheckIcon fontSize='small' />
+								<CheckIcon fontSize="small" />
 							</li>
 						))}
 					</Listbox>
@@ -171,11 +175,6 @@ export default function CustomizedHook() {
 			</div>
 		</NoSsr>
 	);
-}
-
-interface FilmOptionType {
-	title: string;
-	year: number;
 }
 
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top

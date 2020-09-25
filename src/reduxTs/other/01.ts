@@ -9,3 +9,5 @@ const selectIsOn = (state: RootState) => state.isOn;
 
 // TS infers `isOn` is boolean
 const isOn = useSelector(selectIsOn);
+
+isOn && (() => {})();

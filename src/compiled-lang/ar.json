@@ -1,0 +1,129 @@
+{
+  "app.channel.plug": [
+    {
+      "type": 0,
+      "value": "Tutorial brought to you by "
+    },
+    {
+      "type": 1,
+      "value": "blogName"
+    }
+  ],
+  "app.content": [
+    {
+      "type": 0,
+      "value": "Learn React"
+    }
+  ],
+  "app.header": [
+    {
+      "type": 0,
+      "value": "Edit "
+    },
+    {
+      "children": [
+        {
+          "type": 1,
+          "value": "fileName"
+        }
+      ],
+      "type": 8,
+      "value": "code"
+    },
+    {
+      "type": 0,
+      "value": " js and save to reload"
+    }
+  ],
+  "app.plural": [
+    {
+      "offset": 0,
+      "options": {
+        "=0": {
+          "value": [
+            {
+              "type": 0,
+              "value": "no languages"
+            }
+          ]
+        },
+        "few": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " several languages"
+            }
+          ]
+        },
+        "many": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " lots of languages"
+            }
+          ]
+        },
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " one language"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " wrong format"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "amount"
+    }
+  ],
+  "foo": [
+    {
+      "type": 0,
+      "value": "foo "
+    },
+    {
+      "type": 1,
+      "value": "test"
+    }
+  ],
+  "myMessage": [
+    {
+      "type": 0,
+      "value": "Today is "
+    },
+    {
+      "style": {
+        "parsedOptions": {
+          "day": "2-digit",
+          "month": "2-digit",
+          "year": "numeric"
+        },
+        "pattern": "yyyyMMdd",
+        "type": 1
+      },
+      "type": 3,
+      "value": "ts"
+    }
+  ]
+}

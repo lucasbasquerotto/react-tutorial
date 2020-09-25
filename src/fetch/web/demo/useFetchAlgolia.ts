@@ -13,7 +13,7 @@ interface QueryData {
 }
 
 function getUrl(query: string) {
-	return `http://hn.algolia.com/api/v1/search?query=${query}`;
+	return `https://hn.algolia.com/api/v1/search?query=${query}`;
 }
 
 const useFetchAlgolia = (initialQuery: string) => {

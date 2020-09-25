@@ -3,12 +3,12 @@ import { grey, red } from '@material-ui/core/colors';
 import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
-	interface Theme {
+	export interface Theme {
 		status: {
 			danger: React.CSSProperties['color'];
 		};
 	}
-	interface ThemeOptions {
+	export interface ThemeOptions {
 		status?: {
 			danger: React.CSSProperties['color'];
 		};
@@ -16,10 +16,10 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 }
 
 declare module '@material-ui/core/styles/createPalette' {
-	interface Palette {
+	export interface Palette {
 		neutral: Palette['primary'];
 	}
-	interface PaletteOptions {
+	export interface PaletteOptions {
 		neutral?: PaletteOptions['primary'];
 	}
 }
