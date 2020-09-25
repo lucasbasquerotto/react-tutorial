@@ -1,10 +1,7 @@
 {
 	"editor.formatOnSave": true,
-	"javascript.format.enable": false,
-	"prettier.useTabs": true,
-	"prettier.jsxSingleQuote": true,
-	"prettier.singleQuote": true,
 	"eslint.workingDirectories": ["./"],
-	"typescript.tsserver.experimental.enableProjectDiagnostics": true,
-	"typescript.tsdk": "/docker/git/test/react-tutorial/my-app/node_modules/typescript/lib"
+	"javascript.format.enable": false,
+	"typescript.tsdk": "/docker/git/test/react-tutorial/my-app/node_modules/typescript/lib",
+	"typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

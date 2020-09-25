@@ -9,6 +9,7 @@ import React, {
 import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
 import { EmotionApp } from './emotion/emotion';
+import { MyContainer } from './emotion/test';
 import { FetchApp } from './fetch';
 import './index.css';
 import { JssApp } from './jss/jss';
@@ -95,12 +96,12 @@ const Calculator: FunctionComponent<{}> = () => {
 	return (
 		<>
 			<TemperatureInput
-				scale='c'
+				scale="c"
 				temperature={celsius}
 				onTemperatureChange={handleCelsiusChange}
 			/>
 			<TemperatureInput
-				scale='f'
+				scale="f"
 				temperature={fahrenheit}
 				onTemperatureChange={handleFahrenheitChange}
 			/>
@@ -140,9 +141,9 @@ const FancyBorder: FunctionComponent<{ color: string }> = (props) => (
 const Dialog: FunctionComponent<{ title: string; message: string }> = (
 	props
 ) => (
-	<FancyBorder color='blue'>
-		<h1 className='Dialog-title'>{props.title}</h1>
-		<p className='Dialog-message'>{props.message}</p>
+	<FancyBorder color="blue">
+		<h1 className="Dialog-title">{props.title}</h1>
+		<p className="Dialog-message">{props.message}</p>
 		{props.children}
 	</FancyBorder>
 );
@@ -156,8 +157,8 @@ const SignUpDialog: FunctionComponent<{}> = () => {
 
 	return (
 		<Dialog
-			title='Mars Exploration Program'
-			message='How should we refer to you?'
+			title="Mars Exploration Program"
+			message="How should we refer to you?"
 		>
 			<input value={state.login} onChange={handleChange} />
 			<button onClick={handleSignUp}>Sign Me Up!</button>
@@ -213,7 +214,7 @@ const Board: FunctionComponent<BoardProps> = (props) => {
 			.fill(1)
 			.map((_, i) => i)
 			.map((i) => (
-				<div key={i} className='board-row'>
+				<div key={i} className="board-row">
 					{renderCols(i)}
 				</div>
 			));
@@ -313,17 +314,17 @@ const Game: FunctionComponent<{}> = () => {
 		const orderDescription = historyDesc ? 'Descending' : 'Ascending';
 
 		return (
-			<div className='game'>
-				<div className='game-board'>
+			<div className="game">
+				<div className="game-board">
 					<Board
 						squares={squares}
 						winnerSquares={winnerSquares}
 						onClick={(i) => handleClick(i)}
 					/>
 				</div>
-				<div className='game-info'>
-					<div className='status'>{status}</div>
-					<div className='order-description'>
+				<div className="game-info">
+					<div className="status">{status}</div>
+					<div className="order-description">
 						Order: {orderDescription}{' '}
 						<button onClick={() => toggleHistory()}>Toggle</button>
 					</div>
@@ -451,14 +452,14 @@ const SearchBar: FunctionComponent<SearchBarProps> = (props) => {
 	return (
 		<form>
 			<input
-				type='text'
-				placeholder='Search...'
+				type="text"
+				placeholder="Search..."
 				value={props.filterText}
 				onChange={handleFilterTextChange}
 			/>
 			<p>
 				<input
-					type='checkbox'
+					type="checkbox"
 					checked={props.inStockOnly}
 					onChange={handleInStockChange}
 				/>{' '}
@@ -540,45 +541,48 @@ const Products = () => <FilterableProductTable products={PRODUCTS} />;
 
 const Root = () => (
 	<>
-		<div className='root-container'>
-			<div className='clock'>
+		<div className="root-container">
+			<div className="clock">
 				<Clock />
 			</div>
-			<div className='calculator'>
+			<div className="calculator">
 				<Calculator />
 			</div>
-			<div className='sign-up-dialog'>
+			<div className="sign-up-dialog">
 				<SignUpDialog />
 			</div>
-			<div className='products'>
+			<div className="products">
 				<Products />
 			</div>
-			<div className='game'>
+			<div className="game">
 				<Game />
 			</div>
-			<div className='context'>
+			<div className="context">
 				<ContextApp />
 			</div>
-			<div className='portal'>
+			<div className="portal">
 				<Portal />
 			</div>
-			<div className='mouse-tracker'>
+			<div className="mouse-tracker">
 				<MouseTracker />
 			</div>
-			<div className='fetch'>
+			<div className="fetch">
 				<FetchApp />
 			</div>
-			<div className='redux-counter'>
+			<div className="redux-counter">
 				<ReduxApp />
 			</div>
-			<div className='jss'>
+			<div className="jss">
 				<JssApp />
 			</div>
-			<div className='emotion'>
+			<div className="emotion">
 				<EmotionApp />
 			</div>
-			<div className='material-ui'>
+			<div className="material-ui">
 				<MaterialUiApp />
+			</div>
+			<div className="test">
+				<MyContainer />
 			</div>
 		</div>
 	</>

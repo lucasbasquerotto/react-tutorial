@@ -28,7 +28,8 @@ const useInnermostComponentStyle = (params: { color: string }) => {
 	const { color } = params;
 	const [ref, { width }] = useMeasure();
 
-	const borderColor = width < 150 ? 'red' : width < 400 ? 'yellow' : 'green';
+	const borderColor =
+		width < 150 ? ' red ' : width < 400 ? ' yellow ' : ' green ';
 	const icon = width < 250 ? faCoffee : faAddressBook;
 
 	const styles = {
@@ -50,7 +51,7 @@ const InnermostComponent: FunctionComponent<{ color: string }> = (props) => {
 	LOG && console.log('render innermost');
 
 	return (
-		<div ref={(ref as unknown) as RefObject<HTMLDivElement>} css={styles}>
+		<div ref={ref} css={styles}>
 			<FontAwesomeIcon icon={icon} />
 			{props.children} [[{parseInt('' + width)}px]]
 		</div>
@@ -79,6 +80,7 @@ const useInnerComponentStyle = (params: InnerComponentStyle) => {
 		padding: ${sanitizeCss(cols > 0 ? '5px' : 0)};
 		background-color: ${sanitizeCss(bgColor)};
 		color: ${sanitizeCss(color)};
+		border: 1px solid #0ff;
 		overflow: hidden;
 	`;
 
@@ -108,8 +110,8 @@ const SomeComponent: FunctionComponent<{ color: string }> = (props) => {
 
 export const EmotionApp = () => {
 	const [{ oddColor, evenColor }, setState] = useState({
-		oddColor: 'black',
-		evenColor: 'white',
+		oddColor: ' black ',
+		evenColor: ' white ',
 	});
 
 	const tick = () =>
@@ -123,10 +125,8 @@ export const EmotionApp = () => {
 		return () => clearInterval(timerId);
 	}, []);
 
-	console.log('render');
-
 	return (
-		<SomeComponent color='hotpink; padding: 50px; border: 1px solid black'>
+		<SomeComponent color="hotpink; padding: 50px; border: 1px solid black">
 			<u>Emotion</u> Component
 			{[0, 1, 2, 3, 6, 9, 12, 15].map((amount, idx) => {
 				const bgColor = idx % 2 === 0 ? oddColor : evenColor;
