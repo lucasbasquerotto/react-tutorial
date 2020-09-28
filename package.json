@@ -37,9 +37,11 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"manage:translations": "node ./scripts/translationRunner.js",
-		"extract": "formatjs extract 'src/**/*.ts*' --ignore 'src/**/*.d.ts*' --out-file src/lang/en.json --id-interpolation-pattern '[sha512:contenthash:base64:6]'",
-		"compile": "formatjs compile src/lang/en.json --ast --out-file src/compiled-lang/en.json"
+		"i18n:dev": "echo '{}' > src/lang/en.json",
+		"i18n:extract": "bash ./scripts/i18n-extract.sh",
+		"i18n:compile": "bash ./scripts/i18n-compile.sh",
+		"i18n:formatjs:extract": "formatjs extract",
+		"i18n:formatjs:compile": "formatjs compile"
 	},
 	"eslintConfig": {
 		"extends": [

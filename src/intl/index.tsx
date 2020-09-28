@@ -70,6 +70,13 @@ const App: FunctionComponent<{ date: number }> = (props) => {
 					values={{ blogName: 'My Demo' }}
 				/>
 				<br />
+				<FormattedMessage
+					id="app.channel.plug2"
+					defaultMessage="Tutorial2 brought to you by {blogName}"
+					description="app.channel.plug2"
+					values={{ blogName: 'My Demo2' }}
+				/>
+				<br />
 				<FormattedDate
 					value={props.date}
 					year="numeric"
@@ -145,29 +152,26 @@ const SelectLang = ({
 	);
 };
 
-function getMessages(locale: string) {
-	if (locale === 'fr') {
-		return import('../compiled-lang/fr.json');
-	} else if (locale === 'ar') {
-		return import('../compiled-lang/ar.json');
-	} else {
-		return import('../compiled-lang/en.json');
-	}
-}
-
 export const IntlApp = () => {
-	const [messages, setMessages] = useState<
-		typeof import('../compiled-lang/en.json') | undefined
-	>();
+	const fallbackLocale = 'en';
+	const [messages, setMessages] = useState<Record<string, string>>();
 	const defaultLocale = navigator.language;
-	const supportedLocale = new Set(['en', 'fr', 'ar']).has(defaultLocale);
+	const supportedLocale = new Set(['en', 'fr', 'ar']).has('defaultLocale');
 	const [locale, setLocale] = useState(
-		(supportedLocale ? defaultLocale : null) ?? 'en'
+		(supportedLocale ? defaultLocale : null) ?? fallbackLocale
 	);
 
 	React.useEffect(() => {
 		async function fetchData() {
-			const response = await getMessages(locale);
+			const response = await import('../lang/' + locale + '.json').catch(
+				(e) => {
+					if (locale !== fallbackLocale) {
+						return import('../lang/' + fallbackLocale + '.json');
+					}
+
+					throw e;
+				}
+			);
 			setMessages(response);
 		}
 		fetchData();
@@ -178,7 +182,11 @@ export const IntlApp = () => {
 	}
 
 	return (
-		<IntlProvider locale={locale} messages={messages}>
+		<IntlProvider
+			defaultLocale={fallbackLocale}
+			locale={locale}
+			messages={messages}
+		>
 			<App date={Date.now()} />
 			<SelectLang {...{ locale, setLocale }}></SelectLang>
 			<IntlAuxApp />
