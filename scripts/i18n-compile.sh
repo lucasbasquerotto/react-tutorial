@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eou pipefail
+
 langs=( 'en' 'fr' 'ar' )
 
 if [ "${1:-}" = 'default' ]; then

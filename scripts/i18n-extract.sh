@@ -1,4 +1,6 @@
 #!/bin/bash
+set -eou pipefail
+
 lang='en'
 
 npm run i18n:formatjs:extract \

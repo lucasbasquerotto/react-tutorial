@@ -24,5 +24,6 @@ yarn-error.log*
 
 /tmp/
 
+/src/src-lang/
 /src/lang/*
 !/src/lang/.gitkeep

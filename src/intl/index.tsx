@@ -97,7 +97,7 @@ const App: FunctionComponent<{ date: number }> = (props) => {
 				<FormattedMessage
 					id="app.plural"
 					description="app.plural"
-					defaultMessage="{amount, plural, =0 {no languages} one {# one language} few {# several languages} many {# lots of languages} other {# wrong format}}"
+					defaultMessage="{amount, plural, =0 {no languages} one {one language (#)} few {several languages (#)} many {lots of languages (#)} other {# languages}}"
 					values={{ amount: 3 }}
 				/>
 				<br />
