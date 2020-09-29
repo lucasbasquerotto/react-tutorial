@@ -4,5 +4,5 @@ manageTranslations({
 	messagesDirectory: 'locales/default',
 	translationsDirectory: 'locales/lang',
 	whitelistsDirectory: 'locales/whitelists',
-	languages: ['fr', 'ar', 'es'],
+	languages: ['fr', 'ar'],
 });

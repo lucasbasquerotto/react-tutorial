@@ -1,9 +1,9 @@
 {
-  "app.channel.plug": "Tutorial brought to you by {blogName}",
+  "app.channel.plug": "يقدم لك البرنامج التعليمي {blogName}",
   "app.channel.plug2": "Tutorial2 brought to you by {blogName}",
-  "app.content": "Learn React",
-  "app.header": "Edit <code>{fileName}</code> js and save to reload",
-  "app.plural": "{amount, plural, =0 {no languages} one {one language (#)} few {several languages (#)} many {lots of languages (#)} other {# languages}}",
-  "foo": "foo {test}",
-  "myMessage": "Today is {ts, date, ::yyyyMMdd}"
+  "app.content": "تعلم React",
+  "app.header": "قم بتحرير الملفات وحفظها لإعادة التحميل",
+  "app.plural": "{amount, plural, =0 {البرنامج} one {# التعليمي} few {# قدم لك} many {# lots of languages} other {# لك البرنام}}",
+  "foo": "تلم foo {test}",
+  "myMessage": "يقدم لك البرنامج {ts, date, ::yyyyMMdd}"
 }

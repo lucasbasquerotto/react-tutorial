@@ -19,8 +19,10 @@ for lang in "${langs[@]}"; do
         if [ ! -f "$src" ]; then
             echo "[warn] src file not found ($src)"
         else
-            cp "$src" "$dest"
-            # npm run i18n:formatjs:compile -- "$src" --ast --out-file "$dest"
+            # cp "$src" "$dest"
+            npm run i18n:formatjs:compile -- "$src" --ast \
+                --format='./scripts/i18n-compile-formatter.js' \
+                --out-file "$dest"
         fi
     fi
 done

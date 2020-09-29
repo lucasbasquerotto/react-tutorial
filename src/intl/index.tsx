@@ -154,12 +154,15 @@ const SelectLang = ({
 
 export const IntlApp = () => {
 	const fallbackLocale = 'en';
-	const [messages, setMessages] = useState<Record<string, string>>();
 	const defaultLocale = navigator.language;
 	const supportedLocale = new Set(['en', 'fr', 'ar']).has('defaultLocale');
 	const [locale, setLocale] = useState(
 		(supportedLocale ? defaultLocale : null) ?? fallbackLocale
 	);
+	const [localeData, setLocaleData] = useState<{
+		currentLocale: string;
+		messages: Record<string, string>;
+	}>({ currentLocale: locale, messages: {} });
 
 	React.useEffect(() => {
 		async function fetchData() {
@@ -172,20 +175,20 @@ export const IntlApp = () => {
 					throw e;
 				}
 			);
-			setMessages(response);
+			setLocaleData({ currentLocale: locale, messages: response });
 		}
 		fetchData();
 	}, [locale]);
 
-	if (!messages) {
+	if (!localeData?.messages) {
 		return <span> loading... </span>;
 	}
 
 	return (
 		<IntlProvider
 			defaultLocale={fallbackLocale}
-			locale={locale}
-			messages={messages}
+			locale={localeData?.currentLocale}
+			messages={localeData?.messages}
 		>
 			<App date={Date.now()} />
 			<SelectLang {...{ locale, setLocale }}></SelectLang>
