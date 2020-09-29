@@ -1,20 +1,27 @@
 #!/bin/bash
 set -eou pipefail
 
-langs=( 'en' 'fr' 'ar' )
+default_lang='en'
+langs=( "$default_lang" )
 
-if [ "${1:-}" = 'default' ]; then
-    langs=( 'en' )
+if [ "${1:-}" != 'default' ]; then
+    langs+=( 'fr' 'ar' )
 fi
 
 for lang in "${langs[@]}"; do
-    src="src/src-lang/$lang.json"
     dest="src/lang/$lang.json"
 
-    if [ ! -f "$src" ]; then
-        echo "[warn] src file not found ($src)"
+    if [ "$lang" = "$default_lang" ]; then
+        echo "{}" > "$dest"
     else
-	    npm run i18n:formatjs:compile -- "$src" --ast --out-file "$dest"
+        src="locales/lang/$lang.json"
+
+        if [ ! -f "$src" ]; then
+            echo "[warn] src file not found ($src)"
+        else
+            cp "$src" "$dest"
+            # npm run i18n:formatjs:compile -- "$src" --ast --out-file "$dest"
+        fi
     fi
 done
 

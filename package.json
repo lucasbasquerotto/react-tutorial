@@ -37,11 +37,13 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject",
-		"i18n:dev": "echo '{}' > src/lang/en.json",
-		"i18n:extract": "bash ./scripts/i18n-extract.sh",
 		"i18n:compile": "bash ./scripts/i18n-compile.sh",
+		"i18n:dev": "echo '{}' > src/lang/en.json",
+		"i18n:intl:manager": "node ./scripts/translation-runner.js",
+		"i18n:extract": "bash ./scripts/i18n-extract.sh",
 		"i18n:formatjs:extract": "formatjs extract",
-		"i18n:formatjs:compile": "formatjs compile"
+		"i18n:formatjs:compile": "formatjs compile",
+		"i18n:manage": "npm run i18n:extract && npm run i18n:intl:manager"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -85,14 +87,10 @@
 		]
 	},
 	"devDependencies": {
-		"@formatjs/ts-transformer": "^2.10.1",
+		"@formatjs/cli": "^2.12.0",
 		"@typescript-eslint/eslint-plugin": "4.1.1",
 		"@typescript-eslint/parser": "4.0.0",
-		"babel-cli": "^6.26.0",
 		"babel-eslint": "10.1.0",
-		"babel-plugin-react-intl": "^8.2.3",
-		"babel-preset-es2015": "^6.24.1",
-		"babel-preset-react": "^6.24.1",
 		"eslint-plugin-formatjs": "^2.7.11",
 		"prettier-eslint": "11.0.0",
 		"react-intl-translations-manager": "^5.0.3",
