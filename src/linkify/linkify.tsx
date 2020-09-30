@@ -5,10 +5,17 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Hyperlink from 'react-native-hyperlink';
 
+const styles: any = StyleSheet.create({
+	link: {
+		color: '#2980b9',
+		fontSize: 20,
+	},
+});
+
 const DefaultLink = () => (
-	<Hyperlink linkDefault={true}>
+	<Hyperlink linkDefault={true} linkStyle={styles.link}>
 		<Text css={{ fontSize: 15 }}>
-			This text will be parsed to check for clickable strings like
+			[1] This text will be parsed to check for clickable strings like
 			https://github.com/obipawan/hyperlink and made clickable.
 		</Text>
 	</Hyperlink>
@@ -17,7 +24,7 @@ const DefaultLink = () => (
 const RegularText = () => (
 	<Hyperlink onPress={(url, text) => alert(url + ', ' + text)}>
 		<Text css={{ fontSize: 15 }}>
-			This text will be parsed to check for clickable strings like
+			[2] This text will be parsed to check for clickable strings like
 			https://github.com/obipawan/hyperlink and made clickable.
 		</Text>
 	</Hyperlink>
@@ -26,7 +33,7 @@ const RegularText = () => (
 const RegularTextLongPress = () => (
 	<Hyperlink onLongPress={(url, text) => alert(url + ', ' + text)}>
 		<Text css={{ fontSize: 15 }}>
-			This text will be parsed to check for clickable strings like
+			[3] This text will be parsed to check for clickable strings like
 			https://github.com/obipawan/hyperlink and made clickable for long click.
 		</Text>
 	</Hyperlink>
@@ -36,7 +43,7 @@ const NestedText = () => (
 	<Hyperlink onPress={(url, text) => alert(url + ', ' + text)}>
 		<View>
 			<Text css={{ fontSize: 15 }}>
-				A nested Text component
+				[4] A nested Text component
 				https://facebook.github.io/react-native/docs/text.html works equally
 				well <Text>with https://github.com/obipawan/hyperlink</Text>
 			</Text>
@@ -44,17 +51,11 @@ const NestedText = () => (
 	</Hyperlink>
 );
 
-const styles: any = StyleSheet.create({
-	link: {
-		color: '#2980b9',
-		fontSize: 20,
-	},
-});
-
 const HighlightText = () => (
 	<Hyperlink linkStyle={styles.link}>
 		<Text css={{ fontSize: 15 }}>
-			Make clickable strings like https://github.com/obipawan/hyperlink stylable
+			[5] Make clickable strings like https://github.com/obipawan/hyperlink
+			stylable
 		</Text>
 	</Hyperlink>
 );
@@ -66,7 +67,8 @@ const ParseAndReplace = () => (
 			url === 'https://github.com/obipawan/hyperlink' ? 'Hyperlink' : url
 		}>
 		<Text css={{ fontSize: 15 }}>
-			Make clickable strings cleaner with https://github.com/obipawan/hyperlink
+			[6] Make clickable strings cleaner with
+			https://github.com/obipawan/hyperlink
 		</Text>
 	</Hyperlink>
 );
