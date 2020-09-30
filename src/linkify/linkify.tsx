@@ -1,85 +1,70 @@
 /* eslint-disable no-alert */
 /** @jsx jsx */
-import { jsx } from '@emotion/core';
+import { jsx, css } from '@emotion/core';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Hyperlink from 'react-native-hyperlink';
+import Linkify from 'react-linkify';
 
-const styles: any = StyleSheet.create({
-	link: {
-		color: '#2980b9',
-		fontSize: 20,
-	},
-});
+const customLinkStyle = css`
+	color: #795;
+`;
 
-const DefaultLink = () => (
-	<Hyperlink linkDefault={true} linkStyle={styles.link}>
-		<Text css={{ fontSize: 15 }}>
-			[1] This text will be parsed to check for clickable strings like
-			https://github.com/obipawan/hyperlink and made clickable.
-		</Text>
-	</Hyperlink>
-);
-
-const RegularText = () => (
-	<Hyperlink onPress={(url, text) => alert(url + ', ' + text)}>
-		<Text css={{ fontSize: 15 }}>
-			[2] This text will be parsed to check for clickable strings like
-			https://github.com/obipawan/hyperlink and made clickable.
-		</Text>
-	</Hyperlink>
-);
-
-const RegularTextLongPress = () => (
-	<Hyperlink onLongPress={(url, text) => alert(url + ', ' + text)}>
-		<Text css={{ fontSize: 15 }}>
-			[3] This text will be parsed to check for clickable strings like
-			https://github.com/obipawan/hyperlink and made clickable for long click.
-		</Text>
-	</Hyperlink>
-);
-
-const NestedText = () => (
-	<Hyperlink onPress={(url, text) => alert(url + ', ' + text)}>
-		<View>
-			<Text css={{ fontSize: 15 }}>
-				[4] A nested Text component
-				https://facebook.github.io/react-native/docs/text.html works equally
-				well <Text>with https://github.com/obipawan/hyperlink</Text>
-			</Text>
-		</View>
-	</Hyperlink>
-);
-
-const HighlightText = () => (
-	<Hyperlink linkStyle={styles.link}>
-		<Text css={{ fontSize: 15 }}>
-			[5] Make clickable strings like https://github.com/obipawan/hyperlink
-			stylable
-		</Text>
-	</Hyperlink>
-);
-
-const ParseAndReplace = () => (
-	<Hyperlink
-		linkStyle={styles.link}
-		linkText={(url) =>
-			url === 'https://github.com/obipawan/hyperlink' ? 'Hyperlink' : url
-		}>
-		<Text css={{ fontSize: 15 }}>
-			[6] Make clickable strings cleaner with
-			https://github.com/obipawan/hyperlink
-		</Text>
-	</Hyperlink>
+const CustomLink = (
+	decoratedHref: string,
+	decoratedText: string,
+	key: number,
+) => (
+	<a href={decoratedHref} key={key} css={customLinkStyle}>
+		{decoratedText}
+	</a>
 );
 
 export const LinkifyApp = () => (
 	<React.Fragment>
-		<DefaultLink />
-		<RegularText />
-		<RegularTextLongPress />
-		<NestedText />
-		<HighlightText />
-		<ParseAndReplace />
+		<Linkify>
+			See source code at https://github.com/tasti/react-linkify/.
+		</Linkify>
+		<br />
+		<Linkify>
+			<div>
+				react-linkify
+				<span>(https://github.com/tasti/react-linkify/)</span>
+			</div>
+			<div>
+				React component to parse links (urls, emails, etc.) in text into
+				clickable links
+			</div>
+			See source code at https://github.com/tasti/react-linkify/.
+			<footer>Contact: tasti@zakarie.com</footer>
+		</Linkify>
+		<br />
+		<Linkify>
+			See source code at{' '}
+			<a href="https://github.com/tasti/react-linkify/">
+				https://github.com/tasti/react-linkify/example
+			</a>
+			.
+		</Linkify>
+		<br />
+		<Linkify componentDecorator={CustomLink}>
+			See source code at https://github.com/tasti/react-linkify/.
+		</Linkify>
+
+		{/* <Linkify
+			properties={{
+				target: '_blank',
+				style: { color: 'red', fontWeight: 'bold' },
+			}}>
+			See source code at https://github.com/tasti/react-linkify/.
+		</Linkify>
+
+		<Linkify
+			component="button"
+			properties={{
+				onClick: function onClick() {
+					alert('Success!');
+				},
+			}}>
+			See source code at https://github.com/tasti/react-linkify/.
+		</Linkify> */}
 	</React.Fragment>
 );
