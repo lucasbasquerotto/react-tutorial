@@ -1,7 +1,6 @@
 module.exports = {
 	root: true,
 	extends: ['react-app'],
-	//extends: ['react-app', '@react-native-community'],
 	parser: '@typescript-eslint/parser',
 	plugins: ['@typescript-eslint/eslint-plugin', 'formatjs'],
 	rules: {

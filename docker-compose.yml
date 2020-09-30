@@ -16,6 +16,7 @@ services:
     ports:
       - '3500:3500'
       - '4000:4000'
+      - '19000-19009:19000-19009'
     extra_hosts:
       - 'host.docker.internal:$DOCKER_HOST_IP'
     logging: *logging
@@ -31,6 +32,7 @@ services:
     ports:
       - '3500:3500'
       - '4000:4000'
+      - '19000-19009:19000-19009'
     extra_hosts:
       - 'host.docker.internal:$DOCKER_HOST_IP'
     logging: *logging
