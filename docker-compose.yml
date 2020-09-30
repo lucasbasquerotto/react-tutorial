@@ -7,13 +7,14 @@ x-logging:
 
 services:
   react:
-    image: local/react
     hostname: react
+    image: local/react
     volumes:
       - ./src:/usr/app/src:rw
       - ./env:/usr/app/env:ro
       - .:/external:rw
     ports:
+      - '3500:3500'
       - '4000:4000'
     extra_hosts:
       - 'host.docker.internal:$DOCKER_HOST_IP'
@@ -21,11 +22,14 @@ services:
     command: sleep infinity
 
   react-dynamic:
-    image: local/react
     hostname: react
+    build:
+      context: .
+      dockerfile: docker/react.dockerfile
     volumes:
       - .:/usr/app:rw
     ports:
+      - '3500:3500'
       - '4000:4000'
     extra_hosts:
       - 'host.docker.internal:$DOCKER_HOST_IP'
