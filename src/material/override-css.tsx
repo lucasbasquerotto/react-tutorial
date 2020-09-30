@@ -25,8 +25,7 @@ export default function ClassesNesting() {
 			classes={{
 				root: classes.root, // class name, e.g. `classes-nesting-root-x`
 				label: classes.label, // class name, e.g. `classes-nesting-label-x`
-			}}
-		>
+			}}>
 			classes nesting
 		</Button>
 	);
@@ -47,6 +46,7 @@ export const StyledButton = withStyles({
 	},
 })(Button);
 
+// eslint-disable-next-line no-shadow
 export enum Colors {
 	test = '#ffff00',
 }

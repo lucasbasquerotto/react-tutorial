@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
 import { Theme, ThemeContext } from './theme-context';
 

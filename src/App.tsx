@@ -1,12 +1,12 @@
+/** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
-/* eslint-disable react/prop-types */
+import { jsx } from '@emotion/core';
 import React, {
 	FunctionComponent,
 	ReactNode,
 	useEffect,
 	useState,
 } from 'react';
-import ReactDOM from 'react-dom';
 import ContextApp from './context/app';
 import { EmotionApp } from './emotion/emotion';
 import { MyContainer } from './emotion/test';
@@ -14,7 +14,9 @@ import { FetchApp } from './fetch';
 import './index.css';
 import { IntlApp } from './intl';
 import { JssApp } from './jss/jss';
+import { LinkifyApp } from './linkify/linkify';
 import { MaterialUiApp } from './material/material';
+import { NativeApp } from './native/App';
 import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
@@ -34,10 +36,10 @@ const Clock = () => {
 	}, []);
 
 	return (
-		<>
+		<React.Fragment>
 			<h1>Hello, world!</h1>
 			<h2>It is {state.date.toLocaleTimeString()}.</h2>
-		</>
+		</React.Fragment>
 	);
 };
 
@@ -95,7 +97,7 @@ const Calculator: FunctionComponent<{}> = () => {
 		scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
 
 	return (
-		<>
+		<React.Fragment>
 			<TemperatureInput
 				scale="c"
 				temperature={celsius}
@@ -107,7 +109,7 @@ const Calculator: FunctionComponent<{}> = () => {
 				onTemperatureChange={handleFahrenheitChange}
 			/>
 			<BoilingVerdict celsius={parseFloat(celsius)} />
-		</>
+		</React.Fragment>
 	);
 };
 
@@ -140,7 +142,7 @@ const FancyBorder: FunctionComponent<{ color: string }> = (props) => (
 );
 
 const Dialog: FunctionComponent<{ title: string; message: string }> = (
-	props
+	props,
 ) => (
 	<FancyBorder color="blue">
 		<h1 className="Dialog-title">{props.title}</h1>
@@ -154,13 +156,12 @@ const SignUpDialog: FunctionComponent<{}> = () => {
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
 		setState({ login: e.target.value });
-	const handleSignUp = () => alert(`Welcome aboard, ${state.login}!`);
+	const handleSignUp = () => console.log(`Welcome aboard, ${state.login}!`);
 
 	return (
 		<Dialog
 			title="Mars Exploration Program"
-			message="How should we refer to you?"
-		>
+			message="How should we refer to you?">
 			<input value={state.login} onChange={handleChange} />
 			<button onClick={handleSignUp}>Sign Me Up!</button>
 		</Dialog>
@@ -180,8 +181,7 @@ interface SquareProps {
 const Square: FunctionComponent<SquareProps> = (props) => (
 	<button
 		className={'square' + (props.highlighted ? ' highlighted' : '')}
-		onClick={props.onClick}
-	>
+		onClick={props.onClick}>
 		{props.value}
 	</button>
 );
@@ -220,7 +220,7 @@ const Board: FunctionComponent<BoardProps> = (props) => {
 				</div>
 			));
 
-	return <>{renderRows()}</>;
+	return <React.Fragment>{renderRows()}</React.Fragment>;
 };
 
 interface GameState {
@@ -380,7 +380,7 @@ const ProductRow: FunctionComponent<{ product: Product }> = (props) => {
 	const name = product.stocked ? (
 		product.name
 	) : (
-		<span style={{ color: 'red' }}>{product.name}</span>
+		<span css={{ color: 'red' }}>{product.name}</span>
 	);
 
 	return (
@@ -419,7 +419,7 @@ const ProductTable: FunctionComponent<ProductTableProps> = (props) => {
 				<ProductCategoryRow
 					key={product.category}
 					category={product.category}
-				/>
+				/>,
 			);
 		}
 		rows.push(<ProductRow product={product} key={product.name} />);
@@ -484,7 +484,7 @@ const FilterableProductTable: FunctionComponent<{
 		setState((s) => ({ ...s, inStockOnly }));
 
 	return (
-		<>
+		<React.Fragment>
 			<SearchBar
 				filterText={state.filterText}
 				inStockOnly={state.inStockOnly}
@@ -496,7 +496,7 @@ const FilterableProductTable: FunctionComponent<{
 				filterText={state.filterText}
 				inStockOnly={state.inStockOnly}
 			/>
-		</>
+		</React.Fragment>
 	);
 };
 
@@ -541,7 +541,7 @@ const Products = () => <FilterableProductTable products={PRODUCTS} />;
 //////////////////////////////////////////////////////////////////////////
 
 const Root = () => (
-	<>
+	<React.Fragment>
 		<div className="root-container">
 			<div className="clock">
 				<Clock />
@@ -588,12 +588,18 @@ const Root = () => (
 			<div className="intl">
 				<IntlApp />
 			</div>
+			<div className="native">
+				<NativeApp />
+			</div>
+			<div className="linkify">
+				<LinkifyApp />
+			</div>
 		</div>
-	</>
+	</React.Fragment>
 );
 
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// RENDER /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-ReactDOM.render(<Root />, document.getElementById('root'));
+export { Root };

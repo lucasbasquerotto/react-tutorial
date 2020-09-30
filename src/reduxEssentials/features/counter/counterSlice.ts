@@ -45,7 +45,7 @@ export type IncrementAsyncThunk<ReturnType = void> = ThunkAction<
 // This will call the thunk with the `dispatch` function as the first argument.
 // Async code can then be executed and other actions can be dispatched
 export const incrementAsync = (amount: number): IncrementAsyncThunk => (
-	dispatch
+	dispatch,
 ) => {
 	setTimeout(() => {
 		dispatch(incrementByAmount(amount));

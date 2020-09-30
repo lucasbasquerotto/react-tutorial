@@ -1,4 +1,5 @@
-/* eslint-disable react/prop-types */
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
 import React, {
 	ComponentType,
 	FunctionComponent,
@@ -20,9 +21,9 @@ interface MouseStateProp {
 
 const Cat: FunctionComponent<MouseStateProp> = (props) => (
 	<img
-		src='/logo192.png'
-		alt='cat'
-		style={{
+		src="/logo192.png"
+		alt="cat"
+		css={{
 			position: 'absolute',
 			left: props.mouse.x - 96,
 			top: props.mouse.y - 96,
@@ -58,7 +59,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 					inputRef.current.offsetTop,
 			});
 		},
-		[inputRef]
+		[inputRef],
 	);
 
 	const [style] = useState(mouseInitialStyle);
@@ -77,7 +78,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 // If you really want a HOC for some reason, you can easily
 // create one using a regular component with a render prop!
 const withMouse = (Component: ComponentType<MouseStateProp>) => (
-	props: any
+	props: any,
 ) => <Mouse render={(mouse) => <Component {...props} mouse={mouse} />} />;
 
 const CatWithMouseHOC: FunctionComponent<{}> = withMouse(Cat);
@@ -87,12 +88,12 @@ const renderTheCat: FunctionComponent<MouseState> = (mouse) => (
 );
 
 const MouseTracker: FunctionComponent<{}> = () => (
-	<>
+	<React.Fragment>
 		<h1>Move the mouse around!</h1>
 		<Mouse render={renderTheCat} />
 		<h1>Move the mouse around (HOC)!</h1>
 		<CatWithMouseHOC />
-	</>
+	</React.Fragment>
 );
 
 export { Cat, Mouse, MouseTracker };

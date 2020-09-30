@@ -31,7 +31,7 @@ export const MyComponent = (props) => {
 	return (
 		<div ref={ref} css={style}>
 			<FontAwesomeIcon icon={icon} />
-			{props.children} [[{parseInt('' + width)}px]]
+			{props.children} [[{parseInt('' + width, 10)}px]]
 		</div>
 	);
 };
@@ -43,6 +43,6 @@ const containerStyle = css`
 
 export const MyContainer = () => (
 	<div css={containerStyle}>
-		<MyComponent color='blue'>My content...</MyComponent>
+		<MyComponent color="blue">My content...</MyComponent>
 	</div>
 );

@@ -17,5 +17,5 @@ export const themes: { [key: string]: Theme } = {
 };
 
 export const ThemeContext = React.createContext(
-	themes.dark // default value
+	themes.dark, // default value
 );

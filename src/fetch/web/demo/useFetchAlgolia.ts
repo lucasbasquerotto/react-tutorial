@@ -22,19 +22,19 @@ const useFetchAlgolia = (initialQuery: string) => {
 			(
 				await HttpUtil.get<QueryData>(url).then((r) => {
 					return new Promise<HttpResponse<QueryData> | null>((fn) =>
-						setTimeout(() => fn(r), 3000)
+						setTimeout(() => fn(r), 3000),
 					);
 				})
 			)?.data,
 		getUrl(initialQuery),
-		{ hits: [] }
+		{ hits: [] },
 	);
 
 	const _doFetch = (query: string) => doFetch(getUrl(query));
 
 	const result: [
 		DataInfo<QueryData | undefined, unknown>,
-		(state: string) => unknown
+		(state: string) => unknown,
 	] = [dataInfo, _doFetch];
 
 	return result;

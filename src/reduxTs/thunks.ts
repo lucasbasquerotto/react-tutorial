@@ -11,7 +11,7 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 >;
 
 export const thunkSendMessage = (message: string): AppThunk => async (
-	dispatch
+	dispatch,
 ) => {
 	const asyncResp = await exampleAPI();
 	dispatch(
@@ -19,7 +19,7 @@ export const thunkSendMessage = (message: string): AppThunk => async (
 			message,
 			user: asyncResp,
 			timestamp: new Date().getTime(),
-		})
+		}),
 	);
 };
 

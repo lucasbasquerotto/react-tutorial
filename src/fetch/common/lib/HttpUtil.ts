@@ -26,7 +26,7 @@ const rawPatch = <T>(url: string, data?: T, params?: HttpRequestParams) =>
 	axios.patch(url, { data, ...params });
 
 const wrap = <T extends Array<unknown>, K>(
-	fn: (...args: T) => Promise<AxiosResponse<K>>
+	fn: (...args: T) => Promise<AxiosResponse<K>>,
 ) => (...args: T) =>
 	fn(...args)
 		.catch(function (error) {

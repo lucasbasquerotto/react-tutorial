@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, FunctionComponent } from 'react';
 import { ThemeContext, themes } from './theme-context';
 import ThemedButton from './themed-button';
@@ -9,19 +8,19 @@ const Toolbar: FunctionComponent<{ changeTheme: () => void }> = (props) => (
 );
 
 const Page: FunctionComponent<{}> = ({ children }) => (
-	<div className='page'>{children}</div>
+	<div className="page">{children}</div>
 );
 
 const Section: FunctionComponent<{}> = ({ children }) => (
-	<div className='section'>{children}</div>
+	<div className="section">{children}</div>
 );
 
 const ContextApp: FunctionComponent<{}> = () => {
 	const [state, setState] = useState({ theme: themes.light });
 
 	const toggleTheme = () =>
-		setState((state) => ({
-			theme: state.theme === themes.dark ? themes.light : themes.dark,
+		setState((s) => ({
+			theme: s.theme === themes.dark ? themes.light : themes.dark,
 		}));
 
 	// The ThemedButton button inside the ThemeProvider

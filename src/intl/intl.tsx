@@ -8,7 +8,7 @@ function foo(intl: IntlShape) {
 			defaultMessage: 'foo {test}',
 			description: 'bar',
 		},
-		{ test: 123 }
+		{ test: 123 },
 	);
 }
 
@@ -20,7 +20,7 @@ const Translation = () => {
 			description: 'myMessage',
 			defaultMessage: 'Today is {ts, date, ::yyyyMMdd}',
 		},
-		{ ts: Date.now() }
+		{ ts: Date.now() },
 	);
 
 	const currency = intl.formatNumber(19, {

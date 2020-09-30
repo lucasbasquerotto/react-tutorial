@@ -1,8 +1,0 @@
-{
-	"app.header": "قم بتحرير الملفات وحفظها لإعادة التحميل",
-	"app.content": "تعلم React",
-	"app.channel.plug": "يقدم لك البرنامج التعليمي {blogName}",
-	"app.plural": "{amount, plural, =0 {البرنامج} one {# التعليمي} few {# قدم لك} many {# lots of languages} other {# لك البرنام}}",
-	"myMessage": "يقدم لك البرنامج {ts, date, ::yyyyMMdd}",
-	"foo": "تلم foo {test}"
-}

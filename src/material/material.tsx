@@ -59,7 +59,7 @@ export function MaterialUiApp() {
 					},
 				},
 			}),
-		[finalDarkMode]
+		[finalDarkMode],
 	);
 
 	return (

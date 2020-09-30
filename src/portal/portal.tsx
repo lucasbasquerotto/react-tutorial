@@ -1,5 +1,4 @@
 // https://reactjs.org/tutorial/tutorial.html
-/* eslint-disable react/prop-types */
 import React, { useEffect, useRef, useState, FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 
@@ -38,7 +37,7 @@ const Modal: FunctionComponent<{}> = ({ children }) => {
 		// Any valid React child: JSX, strings, arrays, etc.
 		children,
 		// A DOM element
-		el
+		el,
 	);
 };
 
@@ -57,7 +56,7 @@ const Portal: FunctionComponent<{}> = () => {
 	// for accessibility!)
 	const modal = state.showModal ? (
 		<Modal>
-			<div className='modal'>
+			<div className="modal">
 				<div>
 					With a portal, we can render content into a different part of the DOM,
 					as if it were any other React child.
@@ -71,7 +70,7 @@ const Portal: FunctionComponent<{}> = () => {
 	) : null;
 
 	return (
-		<div className='app'>
+		<div className="app">
 			This div has overflow: hidden. (counter outside: {state.counter})
 			<button onClick={handleShow}>Show modal</button>
 			{modal}

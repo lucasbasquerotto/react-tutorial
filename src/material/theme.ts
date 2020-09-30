@@ -8,6 +8,7 @@ declare module '@material-ui/core/styles/createMuiTheme' {
 			danger: React.CSSProperties['color'];
 		};
 	}
+	// eslint-disable-next-line no-shadow
 	export interface ThemeOptions {
 		status?: {
 			danger: React.CSSProperties['color'];

@@ -55,8 +55,7 @@ const App: FunctionComponent<{ date: number }> = (props) => {
 					className="App-link"
 					href="https://reactjs.org"
 					target="_blank"
-					rel="noopener noreferrer"
-				>
+					rel="noopener noreferrer">
 					<FormattedMessage
 						id="app.content"
 						defaultMessage="Learn React"
@@ -122,7 +121,7 @@ const useStyles = makeStyles((theme: Theme) =>
 		selectEmpty: {
 			marginTop: theme.spacing(2),
 		},
-	})
+	}),
 );
 
 const SelectLang = ({
@@ -130,7 +129,7 @@ const SelectLang = ({
 	setLocale,
 }: {
 	locale: string;
-	setLocale: (l: string) => unknown;
+	setLocale: (_: string) => unknown;
 }) => {
 	const classes = useStyles();
 
@@ -142,8 +141,7 @@ const SelectLang = ({
 				id="demo-simple-select-outlined"
 				value={locale}
 				onChange={(e) => setLocale(e.target.value as string)}
-				label="Language"
-			>
+				label="Language">
 				<MenuItem value="en">English (en)</MenuItem>
 				<MenuItem value="fr">French (fr)</MenuItem>
 				<MenuItem value="ar">Arabic (ar)</MenuItem>
@@ -157,7 +155,7 @@ export const IntlApp = () => {
 	const defaultLocale = navigator.language;
 	const supportedLocale = new Set(['en', 'fr', 'ar']).has('defaultLocale');
 	const [locale, setLocale] = useState(
-		(supportedLocale ? defaultLocale : null) ?? fallbackLocale
+		(supportedLocale ? defaultLocale : null) ?? fallbackLocale,
 	);
 	const [localeData, setLocaleData] = useState<{
 		currentLocale: string;
@@ -173,7 +171,7 @@ export const IntlApp = () => {
 					}
 
 					throw e;
-				}
+				},
 			);
 			setLocaleData({ currentLocale: locale, messages: response });
 		}
@@ -188,10 +186,9 @@ export const IntlApp = () => {
 		<IntlProvider
 			defaultLocale={fallbackLocale}
 			locale={localeData?.currentLocale}
-			messages={localeData?.messages}
-		>
+			messages={localeData?.messages}>
 			<App date={Date.now()} />
-			<SelectLang {...{ locale, setLocale }}></SelectLang>
+			<SelectLang {...{ locale, setLocale }} />
 			<IntlAuxApp />
 		</IntlProvider>
 	);

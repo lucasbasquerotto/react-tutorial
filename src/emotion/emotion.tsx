@@ -53,7 +53,7 @@ const InnermostComponent: FunctionComponent<{ color: string }> = (props) => {
 	return (
 		<div ref={ref} css={styles}>
 			<FontAwesomeIcon icon={icon} />
-			{props.children} [[{parseInt('' + width)}px]]
+			{props.children} [[{parseInt('' + width, 10)}px]]
 		</div>
 	);
 };
@@ -68,7 +68,7 @@ const useInnerComponentStyle = (params: InnerComponentStyle) => {
 	const { amount, bgColor, color } = params;
 	const [ref, { width }] = useMeasure();
 
-	const amountInt = parseInt('' + ((amount ?? 0) > 0 ? amount : 0));
+	const amountInt = parseInt('' + ((amount ?? 0) > 0 ? amount : 0), 10);
 	const max = Math.trunc(width / 200) + 1;
 	const cols = amountInt > max || !width ? max : amountInt;
 
@@ -115,9 +115,9 @@ export const EmotionApp = () => {
 	});
 
 	const tick = () =>
-		setState(({ oddColor, evenColor }) => ({
-			oddColor: evenColor,
-			evenColor: oddColor,
+		setState((s) => ({
+			oddColor: s.evenColor,
+			evenColor: s.oddColor,
 		}));
 
 	useEffect(() => {
@@ -138,7 +138,7 @@ export const EmotionApp = () => {
 						amount={amount}
 						bgColor={bgColor + "'"}
 						color={color}
-					></InnerComponent>
+					/>
 				);
 			})}
 		</SomeComponent>

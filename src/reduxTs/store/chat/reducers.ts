@@ -11,7 +11,7 @@ const initialState: ChatState = {
 
 export function chatReducer(
 	state = initialState,
-	action: ChatActionTypes
+	action: ChatActionTypes,
 ): ChatState {
 	switch (action.type) {
 		case SEND_MESSAGE:
@@ -21,7 +21,7 @@ export function chatReducer(
 		case DELETE_MESSAGE:
 			return {
 				messages: state.messages.filter(
-					(message) => message.timestamp !== action.meta.timestamp
+					(message) => message.timestamp !== action.meta.timestamp,
 				),
 			};
 		default:

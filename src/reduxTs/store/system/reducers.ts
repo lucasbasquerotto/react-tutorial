@@ -8,7 +8,7 @@ const initialState: SystemState = {
 
 export function systemReducer(
 	state = initialState,
-	action: SystemActionTypes
+	action: SystemActionTypes,
 ): SystemState {
 	switch (action.type) {
 		case UPDATE_SESSION: {

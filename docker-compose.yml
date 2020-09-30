@@ -31,16 +31,3 @@ services:
       - 'host.docker.internal:$DOCKER_HOST_IP'
     logging: *logging
     command: sleep infinity
-
-  i18n:
-    build:
-      context: i18n/
-    hostname: i18n
-    volumes:
-      - ./src:/usr/app/src:ro
-      - ./lang:/usr/app/lang:rw
-    ports:
-      - '8080:8080'
-    user: node
-    logging: *logging
-    command: npm run translate

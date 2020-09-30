@@ -6,7 +6,7 @@ function useDataApi<S, T, E>(
 	makeCall: (state: S) => Promise<T>,
 	convertError: (error: unknown) => E,
 	initialState: S,
-	initialData: T
+	initialData: T,
 ): [DataInfo<T, E>, (state: S) => unknown] {
 	const _makeCall = useCallback(makeCall, []);
 	const _convertError = useCallback(convertError || (() => undefined), []);
@@ -54,7 +54,7 @@ function useDataApi<S, T, E>(
 const useDefaultDataApi = <S, T>(
 	makeCall: (state: S) => Promise<T>,
 	initialState: S,
-	initialData: T
+	initialData: T,
 ) => useDataApi(makeCall, (e) => e, initialState, initialData);
 
 export { useDataApi, useDefaultDataApi };

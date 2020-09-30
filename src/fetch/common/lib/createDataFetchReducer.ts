@@ -8,7 +8,7 @@ export interface DataApiAction<T, E> {
 
 const createDataFetchReducer = <T, E>() => (
 	state: DataInfo<T, E>,
-	action: DataApiAction<T, E>
+	action: DataApiAction<T, E>,
 ): DataInfo<T, E> => {
 	switch (action.type) {
 		case 'FETCH_INIT':
