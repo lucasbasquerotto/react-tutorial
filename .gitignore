@@ -74,5 +74,3 @@ buck-out/
 
 # custom
 /tmp/
-/src/lang/*
-!/src/lang/.gitkeep

@@ -1,12 +1,7 @@
 #!/bin/bash
 set -eou pipefail
 
-default_lang='en'
-langs=( "$default_lang" )
-
-if [ "${1:-}" != 'default' ]; then
-    langs+=( 'fr' 'ar' )
-fi
+. locales/langs.src.sh
 
 for lang in "${langs[@]}"; do
     dest="src/lang/$lang.json"
@@ -19,11 +14,9 @@ for lang in "${langs[@]}"; do
         if [ ! -f "$src" ]; then
             echo "[warn] src file not found ($src)"
         else
-            # cp "$src" "$dest"
             npm run i18n:formatjs:compile -- "$src" --ast \
                 --format='./scripts/i18n-compile-formatter.js' \
                 --out-file "$dest"
         fi
     fi
 done
-

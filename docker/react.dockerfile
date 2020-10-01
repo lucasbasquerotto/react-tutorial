@@ -1,7 +1,5 @@
 FROM node:14.9.0
 
-EXPOSE 80
-
 ENV BIND_HOST=0.0.0.0
 ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
 
