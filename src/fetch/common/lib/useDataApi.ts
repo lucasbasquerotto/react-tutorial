@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useReducer, useState } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { createDataFetchReducer } from './createDataFetchReducer';
 import { DataInfo } from './DataInfo';
 
@@ -8,8 +8,6 @@ function useDataApi<S, T, E>(
 	initialState: S,
 	initialData: T,
 ): [DataInfo<T, E>, (state: S) => unknown] {
-	const _makeCall = useCallback(makeCall, []);
-	const _convertError = useCallback(convertError || (() => undefined), []);
 	const [outerState, setOuterState] = useState(initialState);
 
 	const initialDataContainer: DataInfo<T, E> = {
@@ -27,13 +25,13 @@ function useDataApi<S, T, E>(
 			dispatch({ type: 'FETCH_INIT' });
 
 			try {
-				const payload = await _makeCall(outerState);
+				const payload = await makeCall(outerState);
 
 				if (!didCancel) {
 					dispatch({ type: 'FETCH_SUCCESS', payload });
 				}
 			} catch (e) {
-				const error = _convertError(e);
+				const error = convertError(e);
 
 				if (!didCancel) {
 					dispatch({ type: 'FETCH_FAILURE', error });
@@ -46,15 +44,17 @@ function useDataApi<S, T, E>(
 		return () => {
 			didCancel = true;
 		};
-	}, [_makeCall, _convertError, outerState]);
+	}, [makeCall, convertError, outerState]);
 
 	return [state, setOuterState];
 }
+
+const defaultConvertError = (e: unknown) => e;
 
 const useDefaultDataApi = <S, T>(
 	makeCall: (state: S) => Promise<T>,
 	initialState: S,
 	initialData: T,
-) => useDataApi(makeCall, (e) => e, initialState, initialData);
+) => useDataApi(makeCall, defaultConvertError, initialState, initialData);
 
 export { useDataApi, useDefaultDataApi };

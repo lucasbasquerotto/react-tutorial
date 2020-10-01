@@ -161,7 +161,8 @@ const SignUpDialog: FunctionComponent<{}> = () => {
 	return (
 		<Dialog
 			title="Mars Exploration Program"
-			message="How should we refer to you?">
+			message="How should we refer to you?"
+		>
 			<input value={state.login} onChange={handleChange} />
 			<button onClick={handleSignUp}>Sign Me Up!</button>
 		</Dialog>
@@ -181,7 +182,8 @@ interface SquareProps {
 const Square: FunctionComponent<SquareProps> = (props) => (
 	<button
 		className={'square' + (props.highlighted ? ' highlighted' : '')}
-		onClick={props.onClick}>
+		onClick={props.onClick}
+	>
 		{props.value}
 	</button>
 );

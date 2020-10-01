@@ -74,3 +74,4 @@ buck-out/
 
 # custom
 /tmp/
+/src/lang/

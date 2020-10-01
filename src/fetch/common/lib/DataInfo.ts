@@ -1,6 +1,13 @@
-export interface DataInfo<T, E> {
-	data?: T;
-	error?: E;
-	isLoading: boolean;
-	isError: boolean;
-}
+export type DataInfo<T, E> =
+	| {
+			data?: T;
+			error?: undefined;
+			isLoading: boolean;
+			isError: false;
+	  }
+	| {
+			data?: T;
+			error?: E;
+			isLoading: false;
+			isError: true;
+	  };

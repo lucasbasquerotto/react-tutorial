@@ -14,7 +14,8 @@ function FetchApp() {
 				onSubmit={(event) => {
 					doFetch(query);
 					event.preventDefault();
-				}}>
+				}}
+			>
 				<input
 					type="text"
 					value={query}

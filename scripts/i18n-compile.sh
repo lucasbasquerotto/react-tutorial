@@ -3,6 +3,8 @@ set -eou pipefail
 
 . locales/langs.src.sh
 
+mkdir -p src/lang
+
 for lang in "${langs[@]}"; do
     dest="src/lang/$lang.json"
 

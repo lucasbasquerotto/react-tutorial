@@ -55,7 +55,8 @@ const App: FunctionComponent<{ date: number }> = (props) => {
 					className="App-link"
 					href="https://reactjs.org"
 					target="_blank"
-					rel="noopener noreferrer">
+					rel="noopener noreferrer"
+				>
 					<FormattedMessage
 						id="app.content"
 						defaultMessage="Learn React"
@@ -141,7 +142,8 @@ const SelectLang = ({
 				id="demo-simple-select-outlined"
 				value={locale}
 				onChange={(e) => setLocale(e.target.value as string)}
-				label="Language">
+				label="Language"
+			>
 				<MenuItem value="en">English (en)</MenuItem>
 				<MenuItem value="fr">French (fr)</MenuItem>
 				<MenuItem value="ar">Arabic (ar)</MenuItem>
@@ -186,7 +188,8 @@ export const IntlApp = () => {
 		<IntlProvider
 			defaultLocale={fallbackLocale}
 			locale={localeData?.currentLocale}
-			messages={localeData?.messages}>
+			messages={localeData?.messages}
+		>
 			<App date={Date.now()} />
 			<SelectLang {...{ locale, setLocale }} />
 			<IntlAuxApp />

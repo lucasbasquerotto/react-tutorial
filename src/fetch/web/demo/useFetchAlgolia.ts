@@ -1,6 +1,7 @@
 import { DataInfo } from '../../common/lib/DataInfo';
 import { useDefaultDataApi } from '../../common/lib/useDataApi';
 import HttpUtil, { HttpResponse } from '../../common/lib/HttpUtil';
+import { useCallback } from 'react';
 
 interface AlgoliaHits {
 	objectID: string;
@@ -16,21 +17,25 @@ function getUrl(query: string) {
 	return `https://hn.algolia.com/api/v1/search?query=${query}`;
 }
 
+const makeCall = async (url: string) =>
+	(
+		await HttpUtil.get<QueryData>(url).then((r) => {
+			return new Promise<HttpResponse<QueryData> | null>((fn) =>
+				setTimeout(() => fn(r), 1000),
+			);
+		})
+	)?.data;
+
 const useFetchAlgolia = (initialQuery: string) => {
 	const [dataInfo, doFetch] = useDefaultDataApi(
-		async (url: string) =>
-			(
-				await HttpUtil.get<QueryData>(url).then((r) => {
-					return new Promise<HttpResponse<QueryData> | null>((fn) =>
-						setTimeout(() => fn(r), 3000),
-					);
-				})
-			)?.data,
+		makeCall,
 		getUrl(initialQuery),
 		{ hits: [] },
 	);
 
-	const _doFetch = (query: string) => doFetch(getUrl(query));
+	const _doFetch = useCallback((query: string) => doFetch(getUrl(query)), [
+		doFetch,
+	]);
 
 	const result: [
 		DataInfo<QueryData | undefined, unknown>,
