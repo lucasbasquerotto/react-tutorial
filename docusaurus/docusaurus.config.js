@@ -1,3 +1,6 @@
+const remarkImages = require('remark-images');
+const rehypeTruncate = require('rehype-truncate');
+
 module.exports = {
 	title: 'My Site',
 	tagline: 'The tagline of my site',
@@ -7,6 +10,7 @@ module.exports = {
 	favicon: 'img/favicon.ico',
 	organizationName: 'lucasbasquerotto',
 	projectName: 'docusaurus',
+	themes: ['@docusaurus/theme-live-codeblock'],
 	themeConfig: {
 		navbar: {
 			title: 'My Site',
@@ -88,6 +92,8 @@ module.exports = {
 					// Please change this to your repo.
 					editUrl:
 						'https://github.com/facebook/docusaurus/edit/master/website/',
+					remarkPlugins: [remarkImages],
+					rehypePlugins: [rehypeTruncate],
 				},
 				blog: {
 					showReadingTime: true,
