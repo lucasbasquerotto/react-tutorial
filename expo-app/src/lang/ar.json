@@ -1,0 +1,125 @@
+{
+  "app.channel.plug": [
+    {
+      "type": 0,
+      "value": "يقدم لك البرنامج التعليمي "
+    },
+    {
+      "type": 1,
+      "value": "blogName"
+    }
+  ],
+  "app.channel.plug2": [
+    {
+      "type": 0,
+      "value": "Tutorial2 brought to you by "
+    },
+    {
+      "type": 1,
+      "value": "blogName"
+    }
+  ],
+  "app.content": [
+    {
+      "type": 0,
+      "value": "تعلم React"
+    }
+  ],
+  "app.header": [
+    {
+      "type": 0,
+      "value": "قم بتحرير الملفات وحفظها لإعادة التحميل"
+    }
+  ],
+  "app.plural": [
+    {
+      "offset": 0,
+      "options": {
+        "=0": {
+          "value": [
+            {
+              "type": 0,
+              "value": "البرنامج"
+            }
+          ]
+        },
+        "few": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " قدم لك"
+            }
+          ]
+        },
+        "many": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " lots of languages"
+            }
+          ]
+        },
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " التعليمي"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " لك البرنام"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "amount"
+    }
+  ],
+  "foo": [
+    {
+      "type": 0,
+      "value": "تلم foo "
+    },
+    {
+      "type": 1,
+      "value": "test"
+    }
+  ],
+  "myMessage": [
+    {
+      "type": 0,
+      "value": "يقدم لك البرنامج "
+    },
+    {
+      "style": {
+        "parsedOptions": {
+          "day": "2-digit",
+          "month": "2-digit",
+          "year": "numeric"
+        },
+        "pattern": "yyyyMMdd",
+        "type": 1
+      },
+      "type": 3,
+      "value": "ts"
+    }
+  ]
+}

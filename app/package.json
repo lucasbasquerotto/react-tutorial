@@ -40,10 +40,12 @@
 	"devDependencies": {
 		"@formatjs/cli": "^2.12.0",
 		"eslint-plugin-formatjs": "^2.7.11",
+		"eslint-plugin-prettier": "^3.1.4",
+		"prettier": "2.1.2",
 		"prettier-eslint": "11.0.0",
 		"react-intl-translations-manager": "^5.0.3",
-		"typescript": "4.0.3",
-		"source-map-explorer": "^2.5.0"
+		"source-map-explorer": "^2.5.0",
+		"typescript": "4.0.3"
 	},
 	"scripts": {
 		"analyze": "source-map-explorer 'build/static/js/*.js' --html tmp/analyze.html",
@@ -63,36 +65,6 @@
 		"i18n:formatjs:extract": "formatjs extract",
 		"i18n:formatjs:compile": "formatjs compile",
 		"i18n:manage": "npm run i18n:extract && npm run i18n:intl:manager"
-	},
-	"eslintConfigOld": {
-		"extends": [
-			"react-app"
-		],
-		"plugins": [
-			"formatjs"
-		],
-		"rules": {
-			"no-undef": 0,
-			"formatjs/no-offset": "error",
-			"formatjs/enforce-description": [
-				"error",
-				"literal"
-			],
-			"formatjs/enforce-default-message": [
-				"error",
-				"literal"
-			],
-			"formatjs/enforce-placeholders": "error",
-			"formatjs/no-multiple-whitespaces": "error",
-			"formatjs/enforce-plural-rules": [
-				2,
-				{
-					"one": true,
-					"other": true,
-					"zero": false
-				}
-			]
-		}
 	},
 	"browserslist": {
 		"production": [

@@ -1,7 +1,6 @@
 {
 	"editor.formatOnSave": true,
-	"eslint.workingDirectories": ["./"],
-	"javascript.format.enable": false
+	"eslint.workingDirectories": ["./"]
 	// "typescript.tsdk": "/docker/git/test/react-tutorial/my-app/node_modules/typescript/lib",
 	// "typescript.tsserver.experimental.enableProjectDiagnostics": true
 }

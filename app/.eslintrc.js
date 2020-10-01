@@ -1,11 +1,11 @@
 module.exports = {
 	root: true,
 	extends: ['react-app'],
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint/eslint-plugin', 'formatjs'],
+	plugins: ['prettier', 'formatjs'],
 	rules: {
 		quotes: 0,
 		'no-undef': 0,
+		'prettier/prettier': 'error',
 		'formatjs/no-offset': 'error',
 		'formatjs/enforce-description': ['error', 'literal'],
 		'formatjs/enforce-default-message': ['error', 'literal'],

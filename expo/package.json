@@ -6,6 +6,7 @@
 		"ios": "expo start --ios",
 		"web": "expo start --web --https",
 		"eject": "expo eject",
+		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
 		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html"
 	},
 	"dependencies": {
@@ -17,14 +18,16 @@
 		"react-native-web": "~0.13.12"
 	},
 	"devDependencies": {
-		"eslint": "^7.10.0",
 		"@types/react": "~16.9.35",
 		"@types/react-dom": "~16.9.8",
 		"@types/react-native": "~0.63.2",
+		"eslint": "^7.10.0",
+		"eslint-config-universe": "^4.0.0",
+		"eslint-plugin-react": "^7.21.2",
 		"prettier-eslint": "11.0.0",
 		"react-native-web": "~0.13.7",
-		"typescript": "~3.9.5",
-		"source-map-explorer": "^2.5.0"
+		"source-map-explorer": "^2.5.0",
+		"typescript": "~3.9.5"
 	},
 	"private": true
 }

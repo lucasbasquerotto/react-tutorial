@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "app"
+		},
+		{
+			"path": "docusaurus"
+		},
+		{
+			"path": "expo"
+		},
+		{
+			"path": "expo-app"
+		}
+	],
+	"settings": {
+		"javascript.format.enable": false
+	}
+}

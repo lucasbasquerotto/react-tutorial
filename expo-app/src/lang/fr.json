@@ -1,0 +1,125 @@
+{
+  "app.channel.plug": [
+    {
+      "type": 0,
+      "value": "Tutoriel présenté par "
+    },
+    {
+      "type": 1,
+      "value": "blogName"
+    }
+  ],
+  "app.channel.plug2": [
+    {
+      "type": 0,
+      "value": "Tutorial2 brought to you by "
+    },
+    {
+      "type": 1,
+      "value": "blogName"
+    }
+  ],
+  "app.content": [
+    {
+      "type": 0,
+      "value": "Apprendre React"
+    }
+  ],
+  "app.header": [
+    {
+      "type": 0,
+      "value": "Modifiez les fichiers et enregistrez-les pour recharger"
+    }
+  ],
+  "app.plural": [
+    {
+      "offset": 0,
+      "options": {
+        "=0": {
+          "value": [
+            {
+              "type": 0,
+              "value": "no présenté"
+            }
+          ]
+        },
+        "few": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " several apprendre"
+            }
+          ]
+        },
+        "many": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " lots of enregistrez"
+            }
+          ]
+        },
+        "one": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " one tutoriel"
+            }
+          ]
+        },
+        "other": {
+          "value": [
+            {
+              "type": 7
+            },
+            {
+              "type": 0,
+              "value": " wrong fichiers"
+            }
+          ]
+        }
+      },
+      "pluralType": "cardinal",
+      "type": 6,
+      "value": "amount"
+    }
+  ],
+  "foo": [
+    {
+      "type": 0,
+      "value": "Modifiez foo "
+    },
+    {
+      "type": 1,
+      "value": "test"
+    }
+  ],
+  "myMessage": [
+    {
+      "type": 0,
+      "value": "Aujourd'hui, c'est le "
+    },
+    {
+      "style": {
+        "parsedOptions": {
+          "day": "2-digit",
+          "month": "2-digit",
+          "year": "numeric"
+        },
+        "pattern": "yyyyMMdd",
+        "type": 1
+      },
+      "type": 3,
+      "value": "ts"
+    }
+  ]
+}

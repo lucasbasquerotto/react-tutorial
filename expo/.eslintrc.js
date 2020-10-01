@@ -1,10 +1,7 @@
 module.exports = {
 	root: true,
-	extends: ['react-app'],
-	parser: '@typescript-eslint/parser',
-	plugins: ['@typescript-eslint/eslint-plugin'],
+	extends: ['universe', 'eslint:recommended', 'plugin:react/recommended'],
 	rules: {
-		quotes: 0,
-		'react/style-prop-object': ['error', { allow: ['StatusBar'] }],
+		'import/order': 0,
 	},
 };
