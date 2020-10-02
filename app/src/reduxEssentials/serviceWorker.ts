@@ -105,6 +105,7 @@ function registerValidSW(swUrl: string, config: Config) {
 function checkValidServiceWorker(swUrl: string, config: Config) {
 	// Check if the service worker can be found. If it can't reload the page.
 	fetch(swUrl, {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		headers: { 'Service-Worker': 'script' },
 	})
 		.then((response) => {

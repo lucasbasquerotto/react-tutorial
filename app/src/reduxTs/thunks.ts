@@ -1,6 +1,6 @@
-import { Action } from 'redux';
-import { ThunkAction } from 'redux-thunk';
-import { RootState } from './store';
+import type { Action } from 'redux';
+import type { ThunkAction } from 'redux-thunk';
+import type { RootState } from './store';
 import { sendMessage } from './store/chat/actions';
 
 export type AppThunk<ReturnType = void> = ThunkAction<

@@ -7,7 +7,7 @@ const modalRoot = document.getElementById('modal-root');
 
 // Let's create a Modal component that is an abstraction around
 // the portal API.
-const Modal: FunctionComponent<{}> = ({ children }) => {
+const Modal: FunctionComponent<object> = ({ children }) => {
 	const elRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
 	if (!elRef.current) {
@@ -44,7 +44,7 @@ const Modal: FunctionComponent<{}> = ({ children }) => {
 // The Modal component is a normal React component, so we can
 // render it wherever we like without needing to know that it's
 // implemented with portals.
-const Portal: FunctionComponent<{}> = () => {
+const Portal: FunctionComponent<object> = () => {
 	const [state, setState] = useState({ showModal: false, counter: 0 });
 
 	const increment = () => setState((s) => ({ ...s, counter: s.counter + 1 }));

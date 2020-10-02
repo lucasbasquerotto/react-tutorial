@@ -2,7 +2,8 @@
 import { css, jsx } from '@emotion/core';
 import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { FunctionComponent, RefObject, useEffect, useState } from 'react';
+import type { FunctionComponent, RefObject } from 'react';
+import { useEffect, useState } from 'react';
 import { useMeasure } from 'react-use';
 
 const LOG = false;

@@ -17,13 +17,13 @@ import CustomizedHook from './autocomplete';
 import ClassesNesting, { StyledButton } from './override-css';
 import { createMyTheme, ThemeColor } from './theme';
 
-const MyTypography: FunctionComponent<{}> = () => (
+const MyTypography: FunctionComponent<object> = () => (
 	<Typography variant="h1" component="h2">
 		h1. Heading
 	</Typography>
 );
 
-const Hello: FunctionComponent<{}> = () => (
+const Hello: FunctionComponent<object> = () => (
 	<React.Fragment>
 		<Button variant="contained" color={ThemeColor.PRIMARY}>
 			Hello World

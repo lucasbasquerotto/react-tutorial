@@ -1,12 +1,8 @@
 /** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
 import { jsx } from '@emotion/core';
-import React, {
-	FunctionComponent,
-	ReactNode,
-	useEffect,
-	useState,
-} from 'react';
+import type { FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContextApp from './context/app';
 import { EmotionApp } from './emotion/emotion';
 import { MyContainer } from './emotion/test';
@@ -20,6 +16,7 @@ import { NativeApp } from './native/App';
 import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
+import type { Obj } from './types';
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////
@@ -81,7 +78,7 @@ const BoilingVerdict: FunctionComponent<{ celsius: number }> = (props) => {
 	return <p>The water would not boil.</p>;
 };
 
-const Calculator: FunctionComponent<{}> = () => {
+const Calculator: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ temperature: '', scale: 'c' });
 
 	const handleCelsiusChange = (temperature: string) =>
@@ -151,7 +148,7 @@ const Dialog: FunctionComponent<{ title: string; message: string }> = (
 	</FancyBorder>
 );
 
-const SignUpDialog: FunctionComponent<{}> = () => {
+const SignUpDialog: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ login: '' });
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -189,7 +186,7 @@ const Square: FunctionComponent<SquareProps> = (props) => (
 );
 
 interface BoardProps {
-	squares: Array<string>;
+	squares: string[];
 	winnerSquares?: Set<number>;
 	onClick: (i: number) => unknown;
 }
@@ -236,7 +233,7 @@ interface GameState {
 	historyDesc: boolean;
 }
 
-const Game: FunctionComponent<{}> = () => {
+const Game: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState<GameState>({
 		history: [
 			{
@@ -340,7 +337,7 @@ const Game: FunctionComponent<{}> = () => {
 	return render();
 };
 
-function calculateWinner(squares: Array<string>) {
+function calculateWinner(squares: string[]) {
 	const lines = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -399,14 +396,14 @@ interface FilterableProductState {
 }
 
 interface ProductTableProps extends FilterableProductState {
-	products: Array<Product>;
+	products: Product[];
 }
 
 const ProductTable: FunctionComponent<ProductTableProps> = (props) => {
 	const filterText = props.filterText;
 	const inStockOnly = props.inStockOnly;
 
-	const rows: Array<ReactNode> = [];
+	const rows: ReactNode[] = [];
 	let lastCategory: string | null = null;
 
 	props.products.forEach((product) => {
@@ -473,7 +470,7 @@ const SearchBar: FunctionComponent<SearchBarProps> = (props) => {
 };
 
 const FilterableProductTable: FunctionComponent<{
-	products: Array<Product>;
+	products: Product[];
 }> = (props) => {
 	const [state, setState] = useState<FilterableProductState>({
 		filterText: '',

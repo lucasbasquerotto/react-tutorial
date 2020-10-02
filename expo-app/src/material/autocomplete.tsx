@@ -157,7 +157,11 @@ export default function CustomizedHook() {
 					<Label {...getInputLabelProps()}>Customized hook</Label>
 					<InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
 						{value.map((option: FilmOptionType, index: number) => (
-							<Tag label={option.title} {...getTagProps({ index })} />
+							<Tag
+								key={index}
+								label={option.title}
+								{...getTagProps({ index })}
+							/>
 						))}
 						<input {...getInputProps()} />
 					</InputWrapper>
@@ -165,7 +169,7 @@ export default function CustomizedHook() {
 				{groupedOptions.length > 0 ? (
 					<Listbox {...getListboxProps()}>
 						{groupedOptions.map((option, index) => (
-							<li {...getOptionProps({ option, index })}>
+							<li key={index} {...getOptionProps({ option, index })}>
 								<span>{option.title}</span>
 								<CheckIcon fontSize="small" />
 							</li>

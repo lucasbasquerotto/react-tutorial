@@ -10,7 +10,7 @@ interface AlgoliaHits {
 }
 
 interface QueryData {
-	hits: Array<AlgoliaHits>;
+	hits: AlgoliaHits[];
 }
 
 function getUrl(query: string) {

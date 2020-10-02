@@ -8,19 +8,21 @@ import {
 	useMediaQuery,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import { ThemeProvider, StylesProvider } from '@material-ui/core/styles';
-import React, { FunctionComponent, useState } from 'react';
+import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
+import type { FunctionComponent } from 'react';
+import React, { useState } from 'react';
+import type { Obj } from '../types';
 import CustomizedHook from './autocomplete';
 import ClassesNesting, { StyledButton } from './override-css';
 import { createMyTheme, ThemeColor } from './theme';
 
-const MyTypography: FunctionComponent<{}> = () => (
+const MyTypography: FunctionComponent<Obj> = () => (
 	<Typography variant="h1" component="h2">
 		h1. Heading
 	</Typography>
 );
 
-const Hello: FunctionComponent<{}> = () => (
+const Hello: FunctionComponent<Obj> = () => (
 	<React.Fragment>
 		<Button variant="contained" color={ThemeColor.PRIMARY}>
 			Hello World

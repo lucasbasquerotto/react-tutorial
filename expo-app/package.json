@@ -6,7 +6,7 @@
 		"ios": "expo start --ios",
 		"web": "expo start --web --https",
 		"eject": "expo eject",
-		"lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+		"lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
 		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html"
 	},
 	"dependencies": {

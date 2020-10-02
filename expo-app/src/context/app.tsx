@@ -7,15 +7,15 @@ const Toolbar: FunctionComponent<{ changeTheme: () => void }> = (props) => (
 	<ThemedButton onClick={props.changeTheme}>Change Theme</ThemedButton>
 );
 
-const Page: FunctionComponent<{}> = ({ children }) => (
+const Page: FunctionComponent<object> = ({ children }) => (
 	<div className="page">{children}</div>
 );
 
-const Section: FunctionComponent<{}> = ({ children }) => (
+const Section: FunctionComponent<object> = ({ children }) => (
 	<div className="section">{children}</div>
 );
 
-const ContextApp: FunctionComponent<{}> = () => {
+const ContextApp: FunctionComponent<object> = () => {
 	const [state, setState] = useState({ theme: themes.light });
 
 	const toggleTheme = () =>

@@ -12,7 +12,7 @@ function foo(intl: IntlShape) {
 	);
 }
 
-const Translation: FunctionComponent<{}> = () => {
+const Translation: FunctionComponent<object> = () => {
 	const intl = useIntl();
 	const msg1 = intl.formatMessage(
 		{

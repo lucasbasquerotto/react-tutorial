@@ -1,9 +1,5 @@
-import {
-	ChatState,
-	ChatActionTypes,
-	SEND_MESSAGE,
-	DELETE_MESSAGE,
-} from './types';
+import type { ChatState, ChatActionTypes } from './types';
+import { SEND_MESSAGE, DELETE_MESSAGE } from './types';
 
 const initialState: ChatState = {
 	messages: [],

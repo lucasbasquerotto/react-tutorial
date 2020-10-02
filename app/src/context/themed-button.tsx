@@ -1,5 +1,7 @@
-import React, { ButtonHTMLAttributes, FunctionComponent } from 'react';
-import { Theme, ThemeContext } from './theme-context';
+import type { ButtonHTMLAttributes, FunctionComponent } from 'react';
+import React from 'react';
+import type { Theme } from './theme-context';
+import { ThemeContext } from './theme-context';
 
 const ThemedButton: FunctionComponent<ButtonHTMLAttributes<
 	HTMLButtonElement

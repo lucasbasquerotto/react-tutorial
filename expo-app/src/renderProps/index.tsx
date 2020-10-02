@@ -79,13 +79,13 @@ const withMouse = (Component: ComponentType<MouseStateProp>) => (
 	props: any,
 ) => <Mouse render={(mouse) => <Component {...props} mouse={mouse} />} />;
 
-const CatWithMouseHOC: FunctionComponent<{}> = withMouse(Cat);
+const CatWithMouseHOC: FunctionComponent<object> = withMouse(Cat);
 
 const renderTheCat: FunctionComponent<MouseState> = (mouse) => (
 	<Cat mouse={mouse} />
 );
 
-const MouseTracker: FunctionComponent<{}> = () => (
+const MouseTracker: FunctionComponent<object> = () => (
 	<React.Fragment>
 		<h1>Move the mouse around!</h1>
 		<Mouse render={renderTheCat} />

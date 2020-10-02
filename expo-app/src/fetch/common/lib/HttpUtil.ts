@@ -25,7 +25,7 @@ const rawPut = <T>(url: string, data?: T, params?: HttpRequestParams) =>
 const rawPatch = <T>(url: string, data?: T, params?: HttpRequestParams) =>
 	axios.patch(url, { data, ...params });
 
-const wrap = <T extends Array<unknown>, K>(
+const wrap = <T extends unknown[], K>(
 	fn: (...args: T) => Promise<AxiosResponse<K>>,
 ) => (...args: T) =>
 	fn(...args)

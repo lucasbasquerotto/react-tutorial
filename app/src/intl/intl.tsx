@@ -1,5 +1,6 @@
 import React from 'react';
-import { FormattedRelativeTime, IntlShape, useIntl } from 'react-intl';
+import type { IntlShape } from 'react-intl';
+import { FormattedRelativeTime, useIntl } from 'react-intl';
 
 function foo(intl: IntlShape) {
 	return intl.formatMessage(

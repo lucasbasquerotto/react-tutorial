@@ -28,7 +28,7 @@ const useStyles = createUseStyles({
 
 // Define the component using these styles and pass it the 'classes' prop.
 // Use this to assign scoped class names.
-const Button: FunctionComponent<{}> = ({ children }) => {
+const Button: FunctionComponent<object> = ({ children }) => {
 	const styles = useStyles();
 	return (
 		<button className={styles.all + ' ' + styles.myButton}>
