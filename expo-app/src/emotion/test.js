@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons';

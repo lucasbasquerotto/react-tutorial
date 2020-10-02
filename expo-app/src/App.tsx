@@ -172,7 +172,7 @@ const SignUpDialog: FunctionComponent<Obj> = () => {
 
 interface SquareProps {
 	highlighted: boolean;
-	value: string;
+	value: string | null;
 	onClick: () => unknown;
 }
 
@@ -186,7 +186,7 @@ const Square: FunctionComponent<SquareProps> = (props) => (
 );
 
 interface BoardProps {
-	squares: string[];
+	squares: (string | null)[];
 	winnerSquares?: Set<number>;
 	onClick: (i: number) => unknown;
 }
@@ -224,7 +224,7 @@ const Board: FunctionComponent<BoardProps> = (props) => {
 
 interface GameState {
 	history: {
-		squares: string[];
+		squares: (string | null)[];
 		col?: number;
 		row?: number;
 	}[];
@@ -237,7 +237,7 @@ const Game: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState<GameState>({
 		history: [
 			{
-				squares: Array(9).fill(null),
+				squares: Array<string | null>(9).fill(null),
 			},
 		],
 		stepNumber: 0,
@@ -337,7 +337,7 @@ const Game: FunctionComponent<Obj> = () => {
 	return render();
 };
 
-function calculateWinner(squares: string[]) {
+function calculateWinner(squares: (string | null)[]) {
 	const lines = [
 		[0, 1, 2],
 		[3, 4, 5],
@@ -348,8 +348,7 @@ function calculateWinner(squares: string[]) {
 		[0, 4, 8],
 		[2, 4, 6],
 	];
-	for (let i = 0; i < lines.length; i++) {
-		const [a, b, c] = lines[i];
+	for (const [a, b, c] of lines) {
 		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
 			return { winner: squares[a], squares: new Set([a, b, c]) };
 		}
@@ -407,7 +406,7 @@ const ProductTable: FunctionComponent<ProductTableProps> = (props) => {
 	let lastCategory: string | null = null;
 
 	props.products.forEach((product) => {
-		if (product.name.indexOf(filterText) === -1) {
+		if (!product.name.includes(filterText)) {
 			return;
 		}
 		if (inStockOnly && !product.stocked) {

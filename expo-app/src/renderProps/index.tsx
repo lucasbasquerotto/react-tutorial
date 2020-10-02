@@ -7,7 +7,9 @@ import type {
 	ReactNode,
 } from 'react';
 import React, { useCallback, useRef, useState } from 'react';
+import { Image, ImageSourcePropType } from 'react-native';
 import type { Obj } from '../types';
+import logo from './assets/logo192.png';
 
 interface MouseState {
 	x: number;
@@ -19,11 +21,12 @@ interface MouseStateProp {
 }
 
 const Cat: FunctionComponent<MouseStateProp> = (props) => (
-	<img
-		src="/logo192.png"
-		alt="cat"
-		css={{
+	<Image
+		source={logo as ImageSourcePropType}
+		style={{
 			position: 'absolute',
+			width: 192,
+			height: 192,
 			left: props.mouse.x - 96,
 			top: props.mouse.y - 96,
 		}}
@@ -46,7 +49,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 	const inputRef = useRef() as MutableRefObject<HTMLDivElement>;
 
 	const handleMouseMove = useCallback(
-		(event) => {
+		(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 			setState({
 				x:
 					event.clientX +
