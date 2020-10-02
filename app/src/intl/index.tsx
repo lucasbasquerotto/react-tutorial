@@ -167,18 +167,19 @@ export const IntlApp = () => {
 
 	React.useEffect(() => {
 		async function fetchData() {
-			const response = await import('../lang/' + locale + '.json').catch(
-				(e) => {
-					if (locale !== fallbackLocale) {
-						return import('../lang/' + fallbackLocale + '.json');
-					}
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
+			const response: Record<string, string> = await import(
+				'../lang/' + locale + '.json'
+			).catch(async (e) => {
+				if (locale !== fallbackLocale) {
+					return import('../lang/' + fallbackLocale + '.json');
+				}
 
-					throw e;
-				},
-			);
+				throw e;
+			});
 			setLocaleData({ currentLocale: locale, messages: response });
 		}
-		fetchData();
+		void fetchData();
 	}, [locale]);
 
 	if (!localeData?.messages) {

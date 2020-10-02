@@ -1,6 +1,7 @@
-import { DataInfo } from '../../common/lib/DataInfo';
+import type { DataInfo } from '../../common/lib/DataInfo';
 import { useDefaultDataApi } from '../../common/lib/useDataApi';
-import HttpUtil, { HttpResponse } from '../../common/lib/HttpUtil';
+import type { HttpResponse } from '../../common/lib/HttpUtil';
+import HttpUtil from '../../common/lib/HttpUtil';
 import { useCallback } from 'react';
 
 interface AlgoliaHits {

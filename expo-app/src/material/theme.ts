@@ -1,6 +1,8 @@
-import { PropTypes } from '@material-ui/core';
+import type React from 'react';
+import type { PropTypes } from '@material-ui/core';
 import { grey, red } from '@material-ui/core/colors';
-import { createMuiTheme, ThemeOptions } from '@material-ui/core/styles';
+import type { ThemeOptions } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 
 declare module '@material-ui/core/styles/createMuiTheme' {
 	export interface Theme {

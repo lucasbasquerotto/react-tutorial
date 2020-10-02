@@ -1,5 +1,6 @@
-import { Action, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { ThunkAction } from 'redux-thunk';
+import type { Action, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
+import type { ThunkAction } from 'redux-thunk';
 
 const NAME = 'counter';
 

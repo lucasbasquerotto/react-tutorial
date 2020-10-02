@@ -1,9 +1,5 @@
-import {
-	Message,
-	SEND_MESSAGE,
-	DELETE_MESSAGE,
-	ChatActionTypes,
-} from './types';
+import type { Message, ChatActionTypes } from './types';
+import { SEND_MESSAGE, DELETE_MESSAGE } from './types';
 
 // TypeScript infers that this function is returning SendMessageAction
 export function sendMessage(newMessage: Message): ChatActionTypes {

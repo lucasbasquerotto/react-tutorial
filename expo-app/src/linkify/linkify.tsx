@@ -1,12 +1,19 @@
+/* eslint-disable no-alert */
+/** @jsx jsx */
+import { jsx, css } from '@emotion/core';
 import React from 'react';
 import Linkify from 'react-linkify';
+
+const customLinkStyle = css`
+	color: #795;
+`;
 
 const CustomLink = (
 	decoratedHref: string,
 	decoratedText: string,
 	key: number,
 ) => (
-	<a href={decoratedHref} key={key} style={{ color: '#795' }}>
+	<a href={decoratedHref} key={key} css={customLinkStyle}>
 		{decoratedText}
 	</a>
 );

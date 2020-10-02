@@ -7,7 +7,9 @@ interface RootState {
 // TS infers type: (state: RootState) => boolean
 const selectIsOn = (state: RootState) => state.isOn;
 
-// TS infers `isOn` is boolean
-const isOn = useSelector(selectIsOn);
+export function useTest() {
+	// TS infers `isOn` is boolean
+	const isOn = useSelector(selectIsOn);
 
-isOn && (() => {})();
+	isOn && (() => {})();
+}

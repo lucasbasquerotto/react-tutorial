@@ -1,9 +1,10 @@
-import React from 'react';
-import useAutocomplete from '@material-ui/lab/useAutocomplete';
 import NoSsr from '@material-ui/core/NoSsr';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
+import useAutocomplete from '@material-ui/lab/useAutocomplete';
+import React from 'react';
 import styled from 'styled-components';
+import type { Obj } from '../types';
 
 const Label = styled('label')`
 	padding: 0 0 4px;
@@ -43,12 +44,21 @@ const InputWrapper = styled('div')`
 	}
 `;
 
-const Tag = styled(({ label, onDelete, ...props }) => (
-	<div {...props}>
-		<span>{label}</span>
-		<CloseIcon onClick={onDelete} />
-	</div>
-))`
+const Tag = styled(
+	<T extends Obj>({
+		label,
+		onDelete,
+		...props
+	}: {
+		label: string;
+		onDelete: (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => void;
+	} & T) => (
+		<div {...props}>
+			<span>{label}</span>
+			<CloseIcon onClick={onDelete} />
+		</div>
+	),
+)`
 	display: flex;
 	align-items: center;
 	height: 24px;

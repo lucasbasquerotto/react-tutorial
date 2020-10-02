@@ -1,4 +1,6 @@
-import React, { useState, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React, { useState } from 'react';
+import type { Obj } from '../types';
 import { ThemeContext, themes } from './theme-context';
 import ThemedButton from './themed-button';
 
@@ -7,15 +9,15 @@ const Toolbar: FunctionComponent<{ changeTheme: () => void }> = (props) => (
 	<ThemedButton onClick={props.changeTheme}>Change Theme</ThemedButton>
 );
 
-const Page: FunctionComponent<object> = ({ children }) => (
+const Page: FunctionComponent<Obj> = ({ children }) => (
 	<div className="page">{children}</div>
 );
 
-const Section: FunctionComponent<object> = ({ children }) => (
+const Section: FunctionComponent<Obj> = ({ children }) => (
 	<div className="section">{children}</div>
 );
 
-const ContextApp: FunctionComponent<object> = () => {
+const ContextApp: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ theme: themes.light });
 
 	const toggleTheme = () =>

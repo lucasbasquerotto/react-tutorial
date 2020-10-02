@@ -1,3 +1,4 @@
+import type { Theme } from '@material-ui/core';
 import {
 	createStyles,
 	FormControl,
@@ -5,9 +6,9 @@ import {
 	makeStyles,
 	MenuItem,
 	Select,
-	Theme,
 } from '@material-ui/core';
-import React, { FunctionComponent, useState } from 'react';
+import type { FunctionComponent } from 'react';
+import React, { useState } from 'react';
 import {
 	FormattedDate,
 	FormattedMessage,

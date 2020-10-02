@@ -46,7 +46,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 	const inputRef = useRef() as MutableRefObject<HTMLDivElement>;
 
 	const handleMouseMove = useCallback(
-		(event) => {
+		(event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
 			setState({
 				x:
 					event.clientX +

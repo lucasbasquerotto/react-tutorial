@@ -34,6 +34,7 @@ export const { increment, decrement, incrementByAmount } = slice.actions;
 
 export type IncrementAsyncState = ReturnType<typeof slice.reducer>;
 
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export type IncrementAsyncThunk<ReturnType = void> = ThunkAction<
 	ReturnType,
 	IncrementAsyncState,

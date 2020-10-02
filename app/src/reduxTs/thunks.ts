@@ -3,6 +3,7 @@ import type { ThunkAction } from 'redux-thunk';
 import type { RootState } from './store';
 import { sendMessage } from './store/chat/actions';
 
+// eslint-disable-next-line @typescript-eslint/no-invalid-void-type
 export type AppThunk<ReturnType = void> = ThunkAction<
 	ReturnType,
 	RootState,
@@ -23,6 +24,6 @@ export const thunkSendMessage = (message: string): AppThunk => async (
 	);
 };
 
-function exampleAPI() {
+async function exampleAPI() {
 	return Promise.resolve('Async Chat Bot');
 }

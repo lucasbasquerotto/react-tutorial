@@ -1,6 +1,6 @@
 import { useEffect, useReducer, useState } from 'react';
 import { createDataFetchReducer } from './createDataFetchReducer';
-import { DataInfo } from './DataInfo';
+import type { DataInfo } from './DataInfo';
 
 function useDataApi<S, T, E>(
 	makeCall: (state: S) => Promise<T>,

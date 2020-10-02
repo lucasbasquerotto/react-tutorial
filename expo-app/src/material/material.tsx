@@ -1,3 +1,5 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/core';
 import {
 	Card,
 	CssBaseline,
@@ -6,24 +8,21 @@ import {
 	useMediaQuery,
 } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import {
-	createStyles,
-	makeStyles,
-	StylesProvider,
-	ThemeProvider,
-} from '@material-ui/core/styles';
-import React, { FunctionComponent, useState } from 'react';
+import { StylesProvider, ThemeProvider } from '@material-ui/core/styles';
+import type { FunctionComponent } from 'react';
+import React, { useState } from 'react';
+import type { Obj } from '../types';
 import CustomizedHook from './autocomplete';
 import ClassesNesting, { StyledButton } from './override-css';
 import { createMyTheme, ThemeColor } from './theme';
 
-const MyTypography: FunctionComponent<object> = () => (
+const MyTypography: FunctionComponent<Obj> = () => (
 	<Typography variant="h1" component="h2">
 		h1. Heading
 	</Typography>
 );
 
-const Hello: FunctionComponent<object> = () => (
+const Hello: FunctionComponent<Obj> = () => (
 	<React.Fragment>
 		<Button variant="contained" color={ThemeColor.PRIMARY}>
 			Hello World
@@ -34,13 +33,13 @@ const Hello: FunctionComponent<object> = () => (
 	</React.Fragment>
 );
 
-const useMaterialUiAppStyle = makeStyles(() =>
-	createStyles({
-		cssCard: {
-			margin: '20px',
-		},
-	}),
-);
+const useMaterialUiAppStyle = () => {
+	const cssCard = css`
+		margin: 20px;
+	`;
+
+	return { cssCard };
+};
 
 export function MaterialUiApp() {
 	const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
@@ -73,7 +72,7 @@ export function MaterialUiApp() {
 					checked={finalDarkMode}
 					onChange={(e) => setDarkMode(e.target.checked)}
 				/>
-				<Card elevation={4} raised={true} className={cssCard}>
+				<Card elevation={4} raised={true} css={cssCard}>
 					<MyTypography />
 				</Card>
 				<Hello />

@@ -20,7 +20,7 @@ function getUrl(query: string) {
 
 const makeCall = async (url: string) =>
 	(
-		await HttpUtil.get<QueryData>(url).then((r) => {
+		await HttpUtil.get<QueryData>(url).then(async (r) => {
 			return new Promise<HttpResponse<QueryData> | null>((fn) =>
 				setTimeout(() => fn(r), 1000),
 			);

@@ -1,5 +1,6 @@
 import React from 'react';
-import { connect, ConnectedProps } from 'react-redux';
+import type { ConnectedProps } from 'react-redux';
+import { connect } from 'react-redux';
 
 interface RootState {
 	isOn: boolean;

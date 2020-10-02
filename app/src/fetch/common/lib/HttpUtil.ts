@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
 
@@ -11,24 +12,24 @@ export interface HttpResponse<T> {
 	data: T;
 }
 
-const rawGet = <T>(url: string, params?: HttpRequestParams) =>
+const rawGet = async <T>(url: string, params?: HttpRequestParams) =>
 	axios.get<T>(url, params);
-const rawDel = <T>(url: string, params?: HttpRequestParams) =>
+const rawDel = async <T>(url: string, params?: HttpRequestParams) =>
 	axios.delete<T>(url, params);
-const rawHead = <T>(url: string, params?: HttpRequestParams) =>
+const rawHead = async <T>(url: string, params?: HttpRequestParams) =>
 	axios.head<T>(url, params);
-const rawOptions = <T>(url: string, params?: HttpRequestParams) =>
+const rawOptions = async <T>(url: string, params?: HttpRequestParams) =>
 	axios.options<T>(url, params);
-const rawPost = <T>(url: string, data?: T, params?: HttpRequestParams) =>
+const rawPost = async <T>(url: string, data?: T, params?: HttpRequestParams) =>
 	axios.post(url, { data, ...params });
-const rawPut = <T>(url: string, data?: T, params?: HttpRequestParams) =>
+const rawPut = async <T>(url: string, data?: T, params?: HttpRequestParams) =>
 	axios.put(url, { data, ...params });
-const rawPatch = <T>(url: string, data?: T, params?: HttpRequestParams) =>
+const rawPatch = async <T>(url: string, data?: T, params?: HttpRequestParams) =>
 	axios.patch(url, { data, ...params });
 
 const wrap = <T extends unknown[], K>(
 	fn: (...args: T) => Promise<AxiosResponse<K>>,
-) => (...args: T) =>
+) => async (...args: T) =>
 	fn(...args)
 		.catch(function (error) {
 			if (error.response) {

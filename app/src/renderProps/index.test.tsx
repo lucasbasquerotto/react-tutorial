@@ -25,17 +25,17 @@ it('cat - position', () => {
 		render(<Cat mouse={{ x: 10, y: 50 }} />, container);
 	});
 
-	expect(container && container.querySelector('img')?.style.left).toBe('-86px');
+	expect(container?.querySelector('img')?.style.left).toBe('-86px');
 
-	expect(container && container.querySelector('img')?.style.top).toBe('-46px');
+	expect(container?.querySelector('img')?.style.top).toBe('-46px');
 
 	act(() => {
 		render(<Cat mouse={{ x: 200, y: 300 }} />, container);
 	});
 
-	expect(container && container.querySelector('img')?.style.left).toBe('104px');
+	expect(container?.querySelector('img')?.style.left).toBe('104px');
 
-	expect(container && container.querySelector('img')?.style.top).toBe('204px');
+	expect(container?.querySelector('img')?.style.top).toBe('204px');
 });
 
 it('cat - position2', () => {
@@ -43,15 +43,15 @@ it('cat - position2', () => {
 		render(<Cat mouse={{ x: 10, y: 50 }} />, container);
 	});
 
-	expect(container && container.querySelector('img')?.style.left).toBe('-86px');
+	expect(container?.querySelector('img')?.style.left).toBe('-86px');
 
-	expect(container && container.querySelector('img')?.style.top).toBe('-46px');
+	expect(container?.querySelector('img')?.style.top).toBe('-46px');
 
 	act(() => {
 		render(<Cat mouse={{ x: 200, y: 300 }} />, container);
 	});
 
-	expect(container && container.querySelector('img')?.style.left).toBe('104px');
+	expect(container?.querySelector('img')?.style.left).toBe('104px');
 
-	expect(container && container.querySelector('img')?.style.top).toBe('204px');
+	expect(container?.querySelector('img')?.style.top).toBe('204px');
 });

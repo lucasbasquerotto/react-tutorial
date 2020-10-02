@@ -1,12 +1,13 @@
-import React, {
+/** @jsx jsx */
+import { jsx } from '@emotion/core';
+import type {
 	ComponentType,
 	FunctionComponent,
 	MutableRefObject,
 	ReactNode,
-	useCallback,
-	useRef,
-	useState,
 } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
+import type { Obj } from '../types';
 
 interface MouseState {
 	x: number;
@@ -21,7 +22,7 @@ const Cat: FunctionComponent<MouseStateProp> = (props) => (
 	<img
 		src="/logo192.png"
 		alt="cat"
-		style={{
+		css={{
 			position: 'absolute',
 			left: props.mouse.x - 96,
 			top: props.mouse.y - 96,
@@ -73,19 +74,21 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 	);
 };
 
+type WithMouse<T> = T & MouseStateProp;
+
 // If you really want a HOC for some reason, you can easily
 // create one using a regular component with a render prop!
-const withMouse = (Component: ComponentType<MouseStateProp>) => (
-	props: any,
+const withMouse = <T extends Obj>(Component: ComponentType<WithMouse<T>>) => (
+	props: T,
 ) => <Mouse render={(mouse) => <Component {...props} mouse={mouse} />} />;
 
-const CatWithMouseHOC: FunctionComponent<object> = withMouse(Cat);
+const CatWithMouseHOC = withMouse(Cat);
 
 const renderTheCat: FunctionComponent<MouseState> = (mouse) => (
 	<Cat mouse={mouse} />
 );
 
-const MouseTracker: FunctionComponent<object> = () => (
+const MouseTracker: FunctionComponent<Obj> = () => (
 	<React.Fragment>
 		<h1>Move the mouse around!</h1>
 		<Mouse render={renderTheCat} />

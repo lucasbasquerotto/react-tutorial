@@ -1,5 +1,6 @@
-import React, { FunctionComponent } from 'react';
-import { FormattedRelativeTime, IntlShape, useIntl } from 'react-intl';
+import React from 'react';
+import type { IntlShape } from 'react-intl';
+import { FormattedRelativeTime, useIntl } from 'react-intl';
 
 function foo(intl: IntlShape) {
 	return intl.formatMessage(
@@ -12,7 +13,7 @@ function foo(intl: IntlShape) {
 	);
 }
 
-const Translation: FunctionComponent<object> = () => {
+const Translation = () => {
 	const intl = useIntl();
 	const msg1 = intl.formatMessage(
 		{

@@ -1,11 +1,11 @@
+/** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
-import React, {
-	FunctionComponent,
-	ReactNode,
-	useEffect,
-	useState,
-} from 'react';
+import { jsx } from '@emotion/core';
+import type { FunctionComponent, ReactNode } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContextApp from './context/app';
+import { EmotionApp } from './emotion/emotion';
+import { MyContainer } from './emotion/test';
 import { FetchApp } from './fetch';
 import './index.css';
 import { IntlApp } from './intl';
@@ -16,6 +16,7 @@ import { NativeApp } from './native/App';
 import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
+import type { Obj } from './types';
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////
@@ -77,7 +78,7 @@ const BoilingVerdict: FunctionComponent<{ celsius: number }> = (props) => {
 	return <p>The water would not boil.</p>;
 };
 
-const Calculator: FunctionComponent<object> = () => {
+const Calculator: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ temperature: '', scale: 'c' });
 
 	const handleCelsiusChange = (temperature: string) =>
@@ -147,7 +148,7 @@ const Dialog: FunctionComponent<{ title: string; message: string }> = (
 	</FancyBorder>
 );
 
-const SignUpDialog: FunctionComponent<object> = () => {
+const SignUpDialog: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ login: '' });
 
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -232,7 +233,7 @@ interface GameState {
 	historyDesc: boolean;
 }
 
-const Game: FunctionComponent<object> = () => {
+const Game: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState<GameState>({
 		history: [
 			{
@@ -378,7 +379,7 @@ const ProductRow: FunctionComponent<{ product: Product }> = (props) => {
 	const name = product.stocked ? (
 		product.name
 	) : (
-		<span style={{ color: 'red' }}>{product.name}</span>
+		<span css={{ color: 'red' }}>{product.name}</span>
 	);
 
 	return (
@@ -574,11 +575,15 @@ const Root = () => (
 			<div className="jss">
 				<JssApp />
 			</div>
-			<div className="emotion">{/* <EmotionApp /> */}</div>
+			<div className="emotion">
+				<EmotionApp />
+			</div>
 			<div className="material-ui">
 				<MaterialUiApp />
 			</div>
-			<div className="test">{/* <MyContainer /> */}</div>
+			<div className="test">
+				<MyContainer />
+			</div>
 			<div className="intl">
 				<IntlApp />
 			</div>

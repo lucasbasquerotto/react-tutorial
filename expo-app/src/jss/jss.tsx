@@ -1,5 +1,7 @@
-import React, { FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
+import React from 'react';
 import { createUseStyles } from 'react-jss';
+import type { Obj } from '../types';
 
 // Create your Styles. Remember, since React-JSS uses the default preset,
 // most plugins are available without further configuration needed.
@@ -28,7 +30,7 @@ const useStyles = createUseStyles({
 
 // Define the component using these styles and pass it the 'classes' prop.
 // Use this to assign scoped class names.
-const Button: FunctionComponent<object> = ({ children }) => {
+const Button: FunctionComponent<Obj> = ({ children }) => {
 	const styles = useStyles();
 	return (
 		<button className={styles.all + ' ' + styles.myButton}>

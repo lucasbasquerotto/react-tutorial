@@ -27,10 +27,7 @@ const isLocalhost = Boolean(
 export function register(config: Config) {
 	if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
 		// The URL constructor is available in all browsers that support SW.
-		const publicUrl = new URL(
-			process.env.PUBLIC_URL ?? '',
-			window.location.href,
-		);
+		const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
 		if (publicUrl.origin !== window.location.origin) {
 			// Our service worker won't work if PUBLIC_URL is on a different origin
 			// from what our page is served on. This might happen if a CDN is used to
@@ -108,6 +105,7 @@ function registerValidSW(swUrl: string, config: Config) {
 function checkValidServiceWorker(swUrl: string, config: Config) {
 	// Check if the service worker can be found. If it can't reload the page.
 	fetch(swUrl, {
+		// eslint-disable-next-line @typescript-eslint/naming-convention
 		headers: { 'Service-Worker': 'script' },
 	})
 		.then((response) => {
