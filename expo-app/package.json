@@ -1,5 +1,5 @@
 {
-	"main": "node_modules/expo/AppEntry.js",
+	"main": "src/index",
 	"scripts": {
 		"start": "expo start",
 		"android": "expo start --android",
@@ -7,7 +7,10 @@
 		"web": "expo start --web --https",
 		"eject": "expo eject",
 		"lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
-		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html"
+		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html",
+		"static-dev": "gatsby develop --host 0.0.0.0 --port 4000",
+		"serve": "gatsby serve --host 0.0.0.0 --port 4000",
+		"static": "gatsby build"
 	},
 	"dependencies": {
 		"@emotion/core": "10.0.35",
@@ -32,6 +35,8 @@
 		"axios": "0.20.0",
 		"expo": "~39.0.2",
 		"expo-status-bar": "~1.0.2",
+		"gatsby": "^2.24.67",
+		"gatsby-plugin-react-native-web": "^3.1.0",
 		"react": "16.13.1",
 		"react-dom": "16.13.1",
 		"react-intl": "5.8.2",

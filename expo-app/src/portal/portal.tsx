@@ -4,8 +4,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import type { Obj } from '../types';
 
+const myDocument = typeof document !== `undefined` ? document : undefined;
+
 // This contianer is sibling with the root container
-const modalRoot = document.getElementById('modal-root');
+const modalRoot = myDocument?.getElementById('modal-root');
 
 // Let's create a Modal component that is an abstraction around
 // the portal API.
@@ -13,7 +15,11 @@ const Modal: FunctionComponent<Obj> = ({ children }) => {
 	const elRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
 	if (!elRef.current) {
-		elRef.current = document.createElement('div');
+		const el = myDocument?.createElement('div');
+
+		if (el) {
+			elRef.current = el;
+		}
 	}
 
 	// Create a div that we'll render the modal into. Because each

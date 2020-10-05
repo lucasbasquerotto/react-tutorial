@@ -155,7 +155,7 @@ const SelectLang = ({
 
 export const IntlApp = () => {
 	const fallbackLocale = 'en';
-	const defaultLocale = navigator.language;
+	const defaultLocale = navigator?.language;
 	const supportedLocale = new Set(['en', 'fr', 'ar']).has('defaultLocale');
 	const [locale, setLocale] = useState(
 		(supportedLocale ? defaultLocale : null) ?? fallbackLocale,
