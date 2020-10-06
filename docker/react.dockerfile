@@ -8,3 +8,12 @@ WORKDIR /usr/app
 RUN npm install -g expo-cli
 
 ENV PATH=$PATH:/home/node/.npm-global/bin
+
+USER root
+
+# gatsby https
+RUN apt-get update \
+ && apt install -y libnss3-tools \
+ && rm -rf /var/lib/apt/lists/*
+
+USER node

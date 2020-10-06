@@ -171,10 +171,10 @@ export const IntlApp = () => {
 		async function fetchData() {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const response: Record<string, string> = await import(
-				`./lang/${locale}.json`
+				`../lang/${locale}.json`
 			).catch(async (e) => {
 				if (locale !== fallbackLocale) {
-					return import(`./lang/${fallbackLocale}.json`);
+					return import(`../lang/${fallbackLocale}.json`);
 				}
 
 				throw e;

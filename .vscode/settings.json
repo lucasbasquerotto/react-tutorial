@@ -1,6 +1,33 @@
 {
 	"editor.formatOnSave": true,
-	"eslint.workingDirectories": ["./"]
-	// "typescript.tsdk": "/docker/git/test/react-tutorial/my-app/node_modules/typescript/lib",
-	// "typescript.tsserver.experimental.enableProjectDiagnostics": true
+	"eslint.workingDirectories": ["./"],
+	"[html]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"editor.gotoLocation.multipleDefinitions": "goto",
+	"editor.gotoLocation.multipleTypeDefinitions": "goto",
+	"files.trimTrailingWhitespace": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[dockerfile]": {
+		"editor.formatOnSave": false,
+		"editor.quickSuggestions": {
+			"strings": true
+		}
+	},
+	"colorize.languages": [
+		"typescript",
+		"javascript",
+		"css",
+		"sass",
+		"scss",
+		"less",
+		"postcss",
+		"sss",
+		"stylus",
+		"xml",
+		"svg"
+	],
+	"colorize.include": ["**/*.tsx"]
 }
