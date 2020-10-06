@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useFetchAlgolia } from './web/demo/useFetchAlgolia';
 import { LoadDataDefault } from './web/lib/LoadDataDefault';
