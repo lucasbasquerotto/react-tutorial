@@ -1,3 +1,6 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-console */
+/* eslint-disable spaced-comment */
 /** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
 import { jsx } from '@emotion/core';
@@ -55,12 +58,13 @@ interface TemperatureInputProps {
 	onTemperatureChange: (value: string) => unknown;
 }
 
-const TemperatureInput: FunctionComponent<TemperatureInputProps> = (props) => {
+const TemperatureInput: FunctionComponent<TemperatureInputProps> = ({
+	temperature = '',
+	scale = '',
+	onTemperatureChange,
+}) => {
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-		props.onTemperatureChange(e.target.value);
-
-	const temperature = props.temperature ?? '';
-	const scale = props.scale ?? '';
+		onTemperatureChange(e.target.value);
 
 	return (
 		<fieldset>
@@ -70,13 +74,33 @@ const TemperatureInput: FunctionComponent<TemperatureInputProps> = (props) => {
 	);
 };
 
-const BoilingVerdict: FunctionComponent<{ celsius: number }> = (props) => {
-	if (props.celsius >= 100) {
+const BoilingVerdict: FunctionComponent<{ celsius: number }> = ({
+	celsius,
+}) => {
+	if (celsius >= 100) {
 		return <p>The water would boil.</p>;
 	}
 
 	return <p>The water would not boil.</p>;
 };
+
+function tryConvert(temperature: string, convert: (value: number) => number) {
+	const input = parseFloat(temperature);
+	if (Number.isNaN(input)) {
+		return '';
+	}
+	const output = convert(input);
+	const rounded = Math.round(output * 1000) / 1000;
+	return rounded.toString();
+}
+
+function toCelsius(fahrenheit: number) {
+	return ((fahrenheit - 32) * 5) / 9;
+}
+
+function toFahrenheit(celsius: number) {
+	return (celsius * 9) / 5 + 32;
+}
 
 const Calculator: FunctionComponent<Obj> = () => {
 	const [state, setState] = useState({ temperature: '', scale: 'c' });
@@ -86,8 +110,8 @@ const Calculator: FunctionComponent<Obj> = () => {
 	const handleFahrenheitChange = (temperature: string) =>
 		setState({ scale: 'f', temperature });
 
-	const scale = state.scale;
-	const temperature = state.temperature;
+	const { scale, temperature } = state;
+
 	const celsius =
 		scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
 	const fahrenheit =
@@ -110,41 +134,24 @@ const Calculator: FunctionComponent<Obj> = () => {
 	);
 };
 
-function tryConvert(temperature: string, convert: (value: number) => number) {
-	const input = parseFloat(temperature);
-	if (Number.isNaN(input)) {
-		return '';
-	}
-	const output = convert(input);
-	const rounded = Math.round(output * 1000) / 1000;
-	return rounded.toString();
-}
-
-function toCelsius(fahrenheit: number) {
-	return ((fahrenheit - 32) * 5) / 9;
-}
-
-function toFahrenheit(celsius: number) {
-	return (celsius * 9) / 5 + 32;
-}
-
 //////////////////////////////////////////////////////////////////////////
 ///////////////////////////////// DIALOG /////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-const FancyBorder: FunctionComponent<{ color: string }> = (props) => (
-	<div className={'FancyBorder FancyBorder-' + props.color}>
-		{props.children}
-	</div>
-);
+const FancyBorder: FunctionComponent<{ color: string }> = ({
+	color,
+	children,
+}) => <div className={`FancyBorder FancyBorder-${color}`}>{children}</div>;
 
-const Dialog: FunctionComponent<{ title: string; message: string }> = (
-	props,
-) => (
+const Dialog: FunctionComponent<{ title: string; message: string }> = ({
+	title,
+	message,
+	children,
+}) => (
 	<FancyBorder color="blue">
-		<h1 className="Dialog-title">{props.title}</h1>
-		<p className="Dialog-message">{props.message}</p>
-		{props.children}
+		<h1 className="Dialog-title">{title}</h1>
+		<p className="Dialog-message">{message}</p>
+		{children}
 	</FancyBorder>
 );
 
@@ -161,7 +168,9 @@ const SignUpDialog: FunctionComponent<Obj> = () => {
 			message="How should we refer to you?"
 		>
 			<input value={state.login} onChange={handleChange} />
-			<button onClick={handleSignUp}>Sign Me Up!</button>
+			<button type="button" onClick={handleSignUp}>
+				Sign Me Up!
+			</button>
 		</Dialog>
 	);
 };
@@ -176,12 +185,17 @@ interface SquareProps {
 	onClick: () => unknown;
 }
 
-const Square: FunctionComponent<SquareProps> = (props) => (
+const Square: FunctionComponent<SquareProps> = ({
+	highlighted,
+	onClick,
+	value,
+}) => (
 	<button
-		className={'square' + (props.highlighted ? ' highlighted' : '')}
-		onClick={props.onClick}
+		type="button"
+		className={`square + ${highlighted ? ' highlighted' : ''}`}
+		onClick={onClick}
 	>
-		{props.value}
+		{value}
 	</button>
 );
 
@@ -192,16 +206,14 @@ interface BoardProps {
 }
 
 const Board: FunctionComponent<BoardProps> = (props) => {
-	const renderSquare = (i: number) => {
-		return (
-			<Square
-				key={i}
-				value={props.squares[i]}
-				highlighted={props.winnerSquares?.has(i) ?? false}
-				onClick={() => props.onClick(i)}
-			/>
-		);
-	};
+	const renderSquare = (i: number) => (
+		<Square
+			key={i}
+			value={props.squares[i]}
+			highlighted={props.winnerSquares?.has(i) ?? false}
+			onClick={() => props.onClick(i)}
+		/>
+	);
 
 	const renderCols = (row: number) =>
 		new Array(3)
@@ -231,6 +243,26 @@ interface GameState {
 	stepNumber: number;
 	xIsNext: boolean;
 	historyDesc: boolean;
+}
+
+function calculateWinner(squares: (string | null)[]) {
+	const lines = [
+		[0, 1, 2],
+		[3, 4, 5],
+		[6, 7, 8],
+		[0, 3, 6],
+		[1, 4, 7],
+		[2, 5, 8],
+		[0, 4, 8],
+		[2, 4, 6],
+	];
+	// eslint-disable-next-line no-restricted-syntax
+	for (const [a, b, c] of lines) {
+		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+			return { winner: squares[a], squares: new Set([a, b, c]) };
+		}
+	}
+	return null;
 }
 
 const Game: FunctionComponent<Obj> = () => {
@@ -264,39 +296,37 @@ const Game: FunctionComponent<Obj> = () => {
 		}));
 	};
 
-	const jumpTo = (step: number) => {
-		return setState((s) => ({
+	const jumpTo = (step: number) =>
+		setState((s) => ({
 			...s,
 			stepNumber: step,
 			xIsNext: step % 2 === 0,
 		}));
-	};
 
-	const toggleHistory = () => {
-		return setState((s) => ({
+	const toggleHistory = () =>
+		setState((s) => ({
 			...s,
 			historyDesc: !s.historyDesc,
 		}));
-	};
 
 	const render = () => {
-		const history = state.history;
-		const historyDesc = state.historyDesc;
+		const { history, historyDesc } = state;
 		const current = history[state.stepNumber];
-		const squares = current.squares;
+		const { squares } = current;
 		const winnerInfo = calculateWinner(squares);
 		const winner = winnerInfo?.winner;
 		const winnerSquares = winnerInfo?.squares;
 		const draw = !winner && squares.filter((s) => s === null).length === 0;
 
 		const moves = history.map((step, move) => {
+			const { row, col } = step;
 			const desc = move
-				? 'Go to move #' + move + ' (' + step.col + ', ' + step.row + ')'
+				? `Go to move #${move} (${col ?? ''}, ${row ?? ''})`
 				: 'Go to game start';
 			const isCurrent = move === state.stepNumber;
 			return (
 				<li key={move}>
-					<button onClick={() => jumpTo(move)}>
+					<button type="button" onClick={() => jumpTo(move)}>
 						{isCurrent ? <b>{desc}</b> : desc}
 					</button>
 				</li>
@@ -306,10 +336,10 @@ const Game: FunctionComponent<Obj> = () => {
 		const showMoves = historyDesc ? moves.reverse() : moves;
 
 		const status = winner
-			? 'Winner: ' + winner
+			? `Winner: ${winner}`
 			: draw
 			? 'Draw'
-			: 'Next player: ' + (state.xIsNext ? 'X' : 'O');
+			: `Next player: ${state.xIsNext ? 'X' : 'O'}`;
 
 		const orderDescription = historyDesc ? 'Descending' : 'Ascending';
 
@@ -326,7 +356,9 @@ const Game: FunctionComponent<Obj> = () => {
 					<div className="status">{status}</div>
 					<div className="order-description">
 						Order: {orderDescription}{' '}
-						<button onClick={() => toggleHistory()}>Toggle</button>
+						<button type="button" onClick={() => toggleHistory()}>
+							Toggle
+						</button>
 					</div>
 					<ol>{showMoves}</ol>
 				</div>
@@ -337,32 +369,15 @@ const Game: FunctionComponent<Obj> = () => {
 	return render();
 };
 
-function calculateWinner(squares: (string | null)[]) {
-	const lines = [
-		[0, 1, 2],
-		[3, 4, 5],
-		[6, 7, 8],
-		[0, 3, 6],
-		[1, 4, 7],
-		[2, 5, 8],
-		[0, 4, 8],
-		[2, 4, 6],
-	];
-	for (const [a, b, c] of lines) {
-		if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-			return { winner: squares[a], squares: new Set([a, b, c]) };
-		}
-	}
-	return null;
-}
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////// PRODUCTS ////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 
-const ProductCategoryRow: FunctionComponent<{ category: string }> = (props) => (
+const ProductCategoryRow: FunctionComponent<{ category: string }> = ({
+	category,
+}) => (
 	<tr>
-		<th colSpan={2}>{props.category}</th>
+		<th colSpan={2}>{category}</th>
 	</tr>
 );
 
@@ -373,8 +388,7 @@ interface Product {
 	stocked: boolean;
 }
 
-const ProductRow: FunctionComponent<{ product: Product }> = (props) => {
-	const product = props.product;
+const ProductRow: FunctionComponent<{ product: Product }> = ({ product }) => {
 	const name = product.stocked ? (
 		product.name
 	) : (
@@ -398,14 +412,15 @@ interface ProductTableProps extends FilterableProductState {
 	products: Product[];
 }
 
-const ProductTable: FunctionComponent<ProductTableProps> = (props) => {
-	const filterText = props.filterText;
-	const inStockOnly = props.inStockOnly;
-
+const ProductTable: FunctionComponent<ProductTableProps> = ({
+	products,
+	filterText,
+	inStockOnly,
+}) => {
 	const rows: ReactNode[] = [];
 	let lastCategory: string | null = null;
 
-	props.products.forEach((product) => {
+	products.forEach((product) => {
 		if (!product.name.includes(filterText)) {
 			return;
 		}
@@ -443,23 +458,29 @@ interface SearchBarProps extends FilterableProductState {
 }
 
 const SearchBar: FunctionComponent<SearchBarProps> = (props) => {
+	const {
+		filterText,
+		onFilterTextChange,
+		inStockOnly,
+		onInStockChange,
+	} = props;
 	const handleFilterTextChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-		props.onFilterTextChange(e.target.value);
+		onFilterTextChange(e.target.value);
 	const handleInStockChange = (e: React.ChangeEvent<HTMLInputElement>) =>
-		props.onInStockChange(e.target.checked);
+		onInStockChange(e.target.checked);
 
 	return (
 		<form>
 			<input
 				type="text"
 				placeholder="Search..."
-				value={props.filterText}
+				value={filterText}
 				onChange={handleFilterTextChange}
 			/>
 			<p>
 				<input
 					type="checkbox"
-					checked={props.inStockOnly}
+					checked={inStockOnly}
 					onChange={handleInStockChange}
 				/>{' '}
 				Only show products in stock
@@ -481,6 +502,8 @@ const FilterableProductTable: FunctionComponent<{
 	const handleInStockChange = (inStockOnly: boolean) =>
 		setState((s) => ({ ...s, inStockOnly }));
 
+	const { products } = props;
+
 	return (
 		<React.Fragment>
 			<SearchBar
@@ -490,7 +513,7 @@ const FilterableProductTable: FunctionComponent<{
 				onInStockChange={handleInStockChange}
 			/>
 			<ProductTable
-				products={props.products}
+				products={products}
 				filterText={state.filterText}
 				inStockOnly={state.inStockOnly}
 			/>

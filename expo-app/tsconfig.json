@@ -10,6 +10,7 @@
 			"es2017.intl",
 			"es2018.intl"
 		],
+
 		"allowJs": true,
 		"jsx": "react",
 		"noEmit": true,

@@ -5,9 +5,9 @@ import { ThemeContext, themes } from './theme-context';
 import ThemedButton from './themed-button';
 
 // An intermediate component that uses the ThemedButton
-const Toolbar: FunctionComponent<{ changeTheme: () => void }> = (props) => (
-	<ThemedButton onClick={props.changeTheme}>Change Theme</ThemedButton>
-);
+const Toolbar: FunctionComponent<{ changeTheme: () => void }> = ({
+	changeTheme,
+}) => <ThemedButton onClick={changeTheme}>Change Theme</ThemedButton>;
 
 const Page: FunctionComponent<Obj> = ({ children }) => (
 	<div className="page">{children}</div>

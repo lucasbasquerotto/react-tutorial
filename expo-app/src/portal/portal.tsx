@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import ReactDOM from 'react-dom';
 import type { Obj } from '../types';
 
-const myDocument = typeof document !== `undefined` ? document : undefined;
+const myDocument = typeof document !== 'undefined' ? document : undefined;
 
 // This contianer is sibling with the root container
 const modalRoot = myDocument?.getElementById('modal-root');
@@ -38,6 +38,8 @@ const Modal: FunctionComponent<Obj> = ({ children }) => {
 				modalRoot.removeChild(el);
 			};
 		}
+
+		return undefined;
 	});
 
 	// Use a portal to render the children into the element
@@ -71,8 +73,12 @@ const Portal: FunctionComponent<Obj> = () => {
 				</div>
 				This is being rendered inside the #modal-container div (counter inside:{' '}
 				{state.counter}).
-				<button onClick={increment}>Increment counter</button>
-				<button onClick={handleHide}>Hide modal</button>
+				<button type="button" onClick={increment}>
+					Increment counter
+				</button>
+				<button type="button" onClick={handleHide}>
+					Hide modal
+				</button>
 			</div>
 		</Modal>
 	) : null;
@@ -80,7 +86,9 @@ const Portal: FunctionComponent<Obj> = () => {
 	return (
 		<div className="app">
 			This div has overflow: hidden. (counter outside: {state.counter})
-			<button onClick={handleShow}>Show modal</button>
+			<button type="button" onClick={handleShow}>
+				Show modal
+			</button>
 			{modal}
 		</div>
 	);

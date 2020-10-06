@@ -7,17 +7,15 @@ const LoadDataDefault: FunctionComponent<DataInfo<unknown, unknown>> = ({
 	isLoading,
 	children,
 }) => {
-	return (
-		<>
-			{isError ? (
-				<div>Something went wrong...</div>
-			) : isLoading ? (
-				<div>Loading...</div>
-			) : (
-				children
-			)}
-		</>
-	);
+	if (isError) {
+		return <div>Something went wrong...</div>;
+	}
+
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
+
+	return <>{children}</>;
 };
 
 export { LoadDataDefault };

@@ -33,8 +33,8 @@ const useStyles = createUseStyles({
 const Button: FunctionComponent<Obj> = ({ children }) => {
 	const styles = useStyles();
 	return (
-		<button className={styles.all + ' ' + styles.myButton}>
-			<span className={styles.all + ' ' + styles.myLabel}>{children}</span>
+		<button type="button" className={`${styles.all}  ${styles.myButton}`}>
+			<span className={`${styles.all}  ${styles.myLabel}`}>{children}</span>
 		</button>
 	);
 };

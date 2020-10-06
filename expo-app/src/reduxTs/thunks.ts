@@ -11,6 +11,10 @@ export type AppThunk<ReturnType = void> = ThunkAction<
 	Action<string>
 >;
 
+async function exampleAPI() {
+	return Promise.resolve('Async Chat Bot');
+}
+
 export const thunkSendMessage = (message: string): AppThunk => async (
 	dispatch,
 ) => {
@@ -23,7 +27,3 @@ export const thunkSendMessage = (message: string): AppThunk => async (
 		}),
 	);
 };
-
-async function exampleAPI() {
-	return Promise.resolve('Async Chat Bot');
-}

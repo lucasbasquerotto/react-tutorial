@@ -7,7 +7,12 @@ const ThemedButton: FunctionComponent<ButtonHTMLAttributes<
 	HTMLButtonElement
 >> = (props) => {
 	const renderBtn = (theme: Theme) => (
-		<button {...props} style={{ backgroundColor: theme.background }}>
+		<button
+			type="button"
+			// eslint-disable-next-line react/jsx-props-no-spreading
+			{...props}
+			style={{ backgroundColor: theme.background }}
+		>
 			{props.children}
 		</button>
 	);

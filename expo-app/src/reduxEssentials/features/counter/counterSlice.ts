@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import type { Action, PayloadAction } from '@reduxjs/toolkit';
 import { createSlice } from '@reduxjs/toolkit';
 import type { ThunkAction } from 'redux-thunk';
@@ -59,5 +60,4 @@ export const incrementAsync = (amount: number): IncrementAsyncThunk => (
 // in the slice file. For example: `useSelector((state) => state.counter.value)`
 export const selectCount = (state: { [NAME]: CounterState }) =>
 	state[NAME]?.value;
-
 export const counterReducer = slice.reducer;

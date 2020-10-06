@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable no-console */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core';
 import { faAddressBook, faCoffee } from '@fortawesome/free-solid-svg-icons';
@@ -10,7 +12,7 @@ const LOG = false;
 const SANITIZE_CSS = true;
 
 function sanitizeCss(value: number | string) {
-	let valueStr = '' + (value ?? '');
+	let valueStr = `${value}` ?? '';
 
 	if (valueStr.split('"').length % 2 !== 1) {
 		valueStr = valueStr.replace('"', '');
@@ -36,7 +38,7 @@ const useInnermostComponentStyle = (params: { color: string }) => {
 	const styles = {
 		color: sanitizeCss(color),
 		padding: '10px',
-		border: sanitizeCss('1px solid ' + borderColor),
+		border: sanitizeCss(`1px solid ${borderColor}`),
 	};
 
 	return {
@@ -49,12 +51,15 @@ const useInnermostComponentStyle = (params: { color: string }) => {
 
 const InnermostComponent: FunctionComponent<{ color: string }> = (props) => {
 	const { ref, styles, icon, width } = useInnermostComponentStyle(props);
+	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
 	LOG && console.log('render innermost');
+
+	const { children } = props;
 
 	return (
 		<div ref={ref} css={styles}>
 			<FontAwesomeIcon icon={icon} />
-			{props.children} [[{parseInt('' + width, 10)}px]]
+			{children} [[{parseInt(`${width}`, 10)}px]]
 		</div>
 	);
 };
@@ -69,7 +74,7 @@ const useInnerComponentStyle = (params: InnerComponentStyle) => {
 	const { amount, bgColor, color } = params;
 	const [ref, { width }] = useMeasure();
 
-	const amountInt = parseInt('' + ((amount ?? 0) > 0 ? amount : 0), 10);
+	const amountInt = parseInt(`${(amount ?? 0) > 0 ? amount : 0}`, 10);
 	const max = Math.trunc(width / 200) + 1;
 	const cols = amountInt > max || !width ? max : amountInt;
 
@@ -90,24 +95,29 @@ const useInnerComponentStyle = (params: InnerComponentStyle) => {
 
 const InnerComponent: FunctionComponent<InnerComponentStyle> = (props) => {
 	const { ref, styles, width } = useInnerComponentStyle(props);
-	LOG && console.log('render inner - ' + props.amount);
+	const { amount, color } = props;
+
+	// eslint-disable-next-line @typescript-eslint/no-unused-expressions
+	LOG && console.log(`render inner - ${amount}`);
 
 	return (
 		<div ref={ref} css={styles}>
-			{Array(props.amount ?? 0)
+			{Array(amount ?? 0)
 				.fill(null)
 				.map((_, idx) => (
-					<InnermostComponent key={idx} color={props.color}>
-						Test {idx} ({props.amount}) -- {width}px
+					<InnermostComponent key={idx} color={color}>
+						Test {idx} ({amount}) -- {width}px
 					</InnermostComponent>
 				))}
 		</div>
 	);
 };
 
-const SomeComponent: FunctionComponent<{ color: string }> = (props) => {
-	return <div css={{ color: sanitizeCss(props.color) }} {...props} />;
-};
+const SomeComponent: FunctionComponent<{ color: string }> = ({
+	color,
+	...rest
+	// eslint-disable-next-line react/jsx-props-no-spreading
+}) => <div css={{ color: sanitizeCss(color) }} {...rest} />;
 
 export const EmotionApp = () => {
 	const [{ oddColor, evenColor }, setState] = useState({
@@ -137,7 +147,7 @@ export const EmotionApp = () => {
 					<InnerComponent
 						key={idx}
 						amount={amount}
-						bgColor={bgColor + "'"}
+						bgColor={`${bgColor} '`}
 						color={color}
 					/>
 				);

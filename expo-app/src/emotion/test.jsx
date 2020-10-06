@@ -29,11 +29,12 @@ const useMyComponentStyle = (params) => {
 
 export const MyComponent = (props) => {
 	const { ref, style, icon, width } = useMyComponentStyle(props);
+	const { children } = props;
 
 	return (
 		<div ref={ref} css={style}>
 			<FontAwesomeIcon icon={icon} />
-			{props.children} [[{parseInt('' + width, 10)}px]]
+			{children} [[{parseInt(`${width}`, 10)}px]]
 		</div>
 	);
 };

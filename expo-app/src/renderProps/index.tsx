@@ -20,15 +20,15 @@ interface MouseStateProp {
 	mouse: MouseState;
 }
 
-const Cat: FunctionComponent<MouseStateProp> = (props) => (
+const Cat: FunctionComponent<MouseStateProp> = ({ mouse }) => (
 	<Image
 		source={logo as ImageSourcePropType}
 		style={{
 			position: 'absolute',
 			width: 192,
 			height: 192,
-			left: props.mouse.x - 96,
-			top: props.mouse.y - 96,
+			left: mouse.x - 96,
+			top: mouse.y - 96,
 		}}
 	/>
 );
@@ -65,6 +65,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
 	);
 
 	const [style] = useState(mouseInitialStyle);
+	const { render } = props;
 
 	return (
 		<div ref={inputRef} style={style} onMouseMove={handleMouseMove}>
@@ -72,7 +73,7 @@ const Mouse: FunctionComponent<MouseProps> = (props) => {
             Instead of providing a static representation of what <Mouse> renders,
             use the `render` prop to dynamically determine what to render.
             */}
-			{props.render(state)}
+			{render(state)}
 		</div>
 	);
 };
@@ -81,8 +82,10 @@ type WithMouse<T> = T & MouseStateProp;
 
 // If you really want a HOC for some reason, you can easily
 // create one using a regular component with a render prop!
+// eslint-disable-next-line react/display-name
 const withMouse = <T extends Obj>(Component: ComponentType<WithMouse<T>>) => (
 	props: T,
+	// eslint-disable-next-line react/jsx-props-no-spreading
 ) => <Mouse render={(mouse) => <Component {...props} mouse={mouse} />} />;
 
 const CatWithMouseHOC = withMouse(Cat);

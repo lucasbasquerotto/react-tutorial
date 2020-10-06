@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import type { AxiosResponse } from 'axios';
 import axios from 'axios';
@@ -31,7 +32,7 @@ const wrap = <T extends unknown[], K>(
 	fn: (...args: T) => Promise<AxiosResponse<K>>,
 ) => async (...args: T) =>
 	fn(...args)
-		.catch(function (error) {
+		.catch((error) => {
 			if (error.response) {
 				// The request was made and the server responded with a status code
 				// that falls out of the range of 2xx

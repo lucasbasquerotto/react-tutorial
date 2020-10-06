@@ -1,8 +1,8 @@
+import { useCallback } from 'react';
 import type { DataInfo } from '../../common/lib/DataInfo';
-import { useDefaultDataApi } from '../../common/lib/useDataApi';
 import type { HttpResponse } from '../../common/lib/HttpUtil';
 import HttpUtil from '../../common/lib/HttpUtil';
-import { useCallback } from 'react';
+import { useDefaultDataApi } from '../../common/lib/useDataApi';
 
 interface AlgoliaHits {
 	objectID: string;
@@ -20,11 +20,12 @@ function getUrl(query: string) {
 
 const makeCall = async (url: string) =>
 	(
-		await HttpUtil.get<QueryData>(url).then(async (r) => {
-			return new Promise<HttpResponse<QueryData> | null>((fn) =>
-				setTimeout(() => fn(r), 1000),
-			);
-		})
+		await HttpUtil.get<QueryData>(url).then(
+			async (r) =>
+				new Promise<HttpResponse<QueryData> | null>((fn) =>
+					setTimeout(() => fn(r), 1000),
+				),
+		)
 	)?.data;
 
 const useFetchAlgolia = (initialQuery: string) => {
@@ -34,14 +35,15 @@ const useFetchAlgolia = (initialQuery: string) => {
 		{ hits: [] },
 	);
 
-	const _doFetch = useCallback((query: string) => doFetch(getUrl(query)), [
-		doFetch,
-	]);
+	const doFetchWrapper = useCallback(
+		(query: string) => doFetch(getUrl(query)),
+		[doFetch],
+	);
 
 	const result: [
 		DataInfo<QueryData | undefined, unknown>,
 		(state: string) => unknown,
-	] = [dataInfo, _doFetch];
+	] = [dataInfo, doFetchWrapper];
 
 	return result;
 };

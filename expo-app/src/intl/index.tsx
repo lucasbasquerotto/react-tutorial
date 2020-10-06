@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/quotes */
+/* eslint-disable react/jsx-curly-brace-presence */
 import type { Theme } from '@material-ui/core';
 import {
 	createStyles,
@@ -36,83 +38,82 @@ import logo from './logo.svg';
 
 // const formattedMessage = intl.formatMessage(message, {username: 'Shanika'});
 
-const App: FunctionComponent<{ date: number }> = (props) => {
-	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<p>
-					<FormattedMessage
-						id="app.header"
-						defaultMessage="Edit <code>{fileName}</code> js and save to reload"
-						description="app.header"
-						values={{
-							fileName: 'src/App.js',
-							code: (word: string) => <code>{word}</code>,
-						}}
-					/>
-				</p>
-				<a
-					className="App-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-					<FormattedMessage
-						id="app.content"
-						defaultMessage="Learn React"
-						description="app.content"
-					/>
-				</a>
+const App: FunctionComponent<{ date: number }> = ({ date }) => (
+	<div className="App">
+		<header className="App-header">
+			<img src={logo as string} className="App-logo" alt="logo" />
+			<p>
 				<FormattedMessage
-					id="app.channel.plug"
-					defaultMessage="Tutorial brought to you by {blogName}"
-					description="app.channel.plug"
-					values={{ blogName: 'My Demo' }}
+					id="app.header"
+					defaultMessage="Edit <code>{fileName}</code> js and save to reload"
+					description="app.header"
+					values={{
+						fileName: 'src/App.js',
+						// eslint-disable-next-line react/display-name
+						code: (word: string) => <code>{word}</code>,
+					}}
 				/>
-				<br />
+			</p>
+			<a
+				className="App-link"
+				href="https://reactjs.org"
+				target="_blank"
+				rel="noopener noreferrer"
+			>
 				<FormattedMessage
-					id="app.channel.plug2"
-					defaultMessage="Tutorial2 brought to you by {blogName}"
-					description="app.channel.plug2"
-					values={{ blogName: 'My Demo2' }}
+					id="app.content"
+					defaultMessage="Learn React"
+					description="app.content"
 				/>
-				<br />
-				<FormattedDate
-					value={props.date}
-					year="numeric"
-					month="long"
-					day="numeric"
-					weekday="long"
-				/>
-				<br />
-				<FormattedNumber
-					value={20.42}
-					style={`currency`}
-					currencyDisplay="symbol"
-					currency="USD"
-				/>
-				<br />
-				<FormattedNumber value={10000} />
-				<br />
-				<FormattedMessage
-					id="app.plural"
-					description="app.plural"
-					defaultMessage="{amount, plural, =0 {no languages} one {one language (#)} few {several languages (#)} many {lots of languages (#)} other {# languages}}"
-					values={{ amount: 3 }}
-				/>
-				<br />
-				<FormattedTime
-					value={new Date()}
-					hour="numeric"
-					minute="numeric"
-					second="numeric"
-					timeZoneName="long"
-				/>
-			</header>
-		</div>
-	);
-};
+			</a>
+			<FormattedMessage
+				id="app.channel.plug"
+				defaultMessage="Tutorial brought to you by {blogName}"
+				description="app.channel.plug"
+				values={{ blogName: 'My Demo' }}
+			/>
+			<br />
+			<FormattedMessage
+				id="app.channel.plug2"
+				defaultMessage="Tutorial2 brought to you by {blogName}"
+				description="app.channel.plug2"
+				values={{ blogName: 'My Demo2' }}
+			/>
+			<br />
+			<FormattedDate
+				value={date}
+				year="numeric"
+				month="long"
+				day="numeric"
+				weekday="long"
+			/>
+			<br />
+			<FormattedNumber
+				value={20.42}
+				style={`currency`}
+				currencyDisplay="symbol"
+				currency="USD"
+			/>
+			<br />
+			<FormattedNumber value={10000} />
+			<br />
+			<FormattedMessage
+				id="app.plural"
+				description="app.plural"
+				defaultMessage="{amount, plural, =0 {no languages} one {one language (#)} few {several languages (#)} many {lots of languages (#)} other {# languages}}"
+				values={{ amount: 3 }}
+			/>
+			<br />
+			<FormattedTime
+				value={new Date()}
+				hour="numeric"
+				minute="numeric"
+				second="numeric"
+				timeZoneName="long"
+			/>
+		</header>
+	</div>
+);
 
 const useStyles = makeStyles((theme: Theme) =>
 	createStyles({
@@ -156,7 +157,7 @@ const SelectLang = ({
 export const IntlApp = () => {
 	const fallbackLocale = 'en';
 	const defaultLocale =
-		typeof window !== `undefined` ? window?.navigator?.language : null;
+		typeof window !== 'undefined' ? window?.navigator?.language : null;
 	const supportedLocale = new Set(['en', 'fr', 'ar']).has('defaultLocale');
 	const [locale, setLocale] = useState(
 		(supportedLocale ? defaultLocale : null) ?? fallbackLocale,
@@ -170,10 +171,10 @@ export const IntlApp = () => {
 		async function fetchData() {
 			// eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
 			const response: Record<string, string> = await import(
-				'../lang/' + locale + '.json'
+				`./lang/${locale}.json`
 			).catch(async (e) => {
 				if (locale !== fallbackLocale) {
-					return import('../lang/' + fallbackLocale + '.json');
+					return import(`./lang/${fallbackLocale}.json`);
 				}
 
 				throw e;

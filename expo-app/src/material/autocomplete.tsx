@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
 import NoSsr from '@material-ui/core/NoSsr';
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
@@ -140,57 +142,6 @@ interface FilmOptionType {
 	year: number;
 }
 
-export default function CustomizedHook() {
-	const {
-		getRootProps,
-		getInputLabelProps,
-		getInputProps,
-		getTagProps,
-		getListboxProps,
-		getOptionProps,
-		groupedOptions,
-		value,
-		focused,
-		setAnchorEl,
-	} = useAutocomplete({
-		id: 'customized-hook-demo',
-		defaultValue: [top100Films[1]],
-		multiple: true,
-		options: top100Films,
-		getOptionLabel: (option) => option.title,
-	});
-
-	return (
-		<NoSsr>
-			<div>
-				<div {...getRootProps()}>
-					<Label {...getInputLabelProps()}>Customized hook</Label>
-					<InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
-						{value.map((option: FilmOptionType, index: number) => (
-							<Tag
-								key={index}
-								label={option.title}
-								{...getTagProps({ index })}
-							/>
-						))}
-						<input {...getInputProps()} />
-					</InputWrapper>
-				</div>
-				{groupedOptions.length > 0 ? (
-					<Listbox {...getListboxProps()}>
-						{groupedOptions.map((option, index) => (
-							<li key={index} {...getOptionProps({ option, index })}>
-								<span>{option.title}</span>
-								<CheckIcon fontSize="small" />
-							</li>
-						))}
-					</Listbox>
-				) : null}
-			</div>
-		</NoSsr>
-	);
-}
-
 // Top 100 films as rated by IMDb users. http://www.imdb.com/chart/top
 const top100Films = [
 	{ title: 'The Shawshank Redemption', year: 1994 },
@@ -298,3 +249,54 @@ const top100Films = [
 	{ title: '3 Idiots', year: 2009 },
 	{ title: 'Monty Python and the Holy Grail', year: 1975 },
 ];
+
+export default function CustomizedHook() {
+	const {
+		getRootProps,
+		getInputLabelProps,
+		getInputProps,
+		getTagProps,
+		getListboxProps,
+		getOptionProps,
+		groupedOptions,
+		value,
+		focused,
+		setAnchorEl,
+	} = useAutocomplete({
+		id: 'customized-hook-demo',
+		defaultValue: [top100Films[1]],
+		multiple: true,
+		options: top100Films,
+		getOptionLabel: (option) => option.title,
+	});
+
+	return (
+		<NoSsr>
+			<div>
+				<div {...getRootProps()}>
+					<Label {...getInputLabelProps()}>Customized hook</Label>
+					<InputWrapper ref={setAnchorEl} className={focused ? 'focused' : ''}>
+						{value.map((option: FilmOptionType, index: number) => (
+							<Tag
+								key={index}
+								label={option.title}
+								{...getTagProps({ index })}
+							/>
+						))}
+						<input {...getInputProps()} />
+					</InputWrapper>
+				</div>
+				{groupedOptions.length > 0 ? (
+					<Listbox {...getListboxProps()}>
+						{groupedOptions.map((option, index) => (
+							<li key={index} {...getOptionProps({ option, index })}>
+								<span>{option.title}</span>
+								<CheckIcon fontSize="small" />
+							</li>
+						))}
+					</Listbox>
+				) : null}
+			</div>
+		</NoSsr>
+	);
+}

@@ -24,10 +24,10 @@ type Props = PropsFromRedux & {
 	backgroundColor: string;
 };
 
-const MyComponent = (props: Props) => (
-	<div style={{ backgroundColor: props.backgroundColor }}>
-		<button onClick={props.toggleOn}>
-			Toggle is {props.isOn ? 'ON' : 'OFF'}
+const MyComponent = ({ isOn, toggleOn, backgroundColor }: Props) => (
+	<div style={{ backgroundColor }}>
+		<button type="button" onClick={toggleOn}>
+			Toggle is {isOn ? 'ON' : 'OFF'}
 		</button>
 	</div>
 );

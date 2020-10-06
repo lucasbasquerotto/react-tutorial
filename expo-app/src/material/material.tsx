@@ -72,7 +72,7 @@ export function MaterialUiApp() {
 					checked={finalDarkMode}
 					onChange={(e) => setDarkMode(e.target.checked)}
 				/>
-				<Card elevation={4} raised={true} css={cssCard}>
+				<Card elevation={4} raised css={cssCard}>
 					<MyTypography />
 				</Card>
 				<Hello />

@@ -9,8 +9,9 @@ import { MaterialUiApp } from '../material/material';
 import { NativeApp } from '../native/App';
 import { ReduxApp } from '../reduxEssentials/App';
 
+// eslint-disable-next-line react/display-name
 export default () => (
-	<React.Fragment>
+	<>
 		<div className="root-container">
 			<div className="fetch">
 				<FetchApp />
@@ -40,5 +41,5 @@ export default () => (
 				<LinkifyApp />
 			</div>
 		</div>
-	</React.Fragment>
+	</>
 );
