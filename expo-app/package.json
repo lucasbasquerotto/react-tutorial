@@ -8,7 +8,7 @@
 		"eject": "expo eject",
 		"lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
 		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html",
-		"dev": "gatsby develop --host 0.0.0.0 --port 4000 --https --key-file ./ssl/localhost.key --cert-file ./ssl/localhost.crt --ca-file ./ssl/ca.pem",
+		"dev": "INTERNAL_STATUS_PORT=19000 gatsby develop --host 0.0.0.0 --port 4000 --https --key-file ./ssl/localhost.key --cert-file ./ssl/localhost.crt --ca-file ./ssl/ca.pem",
 		"serve": "gatsby serve --host 0.0.0.0 --port 4000",
 		"static": "gatsby build"
 	},

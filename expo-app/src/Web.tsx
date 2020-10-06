@@ -4,6 +4,8 @@
 /** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
 import { jsx } from '@emotion/core';
+import { config } from '@fortawesome/fontawesome-svg-core';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { FunctionComponent, ReactNode } from 'react';
 import React, { useEffect, useState } from 'react';
 import ContextApp from './context/app';
@@ -20,6 +22,8 @@ import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
 import type { Obj } from './types';
+
+config.autoAddCss = false;
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////
