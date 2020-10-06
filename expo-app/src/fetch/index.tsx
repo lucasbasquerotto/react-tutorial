@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import { useFetchAlgolia } from './web/demo/useFetchAlgolia';
 import { LoadDataDefault } from './web/lib/LoadDataDefault';
@@ -8,6 +7,7 @@ const initialQuery = 'redux';
 function FetchApp() {
 	const [query, setQuery] = useState(initialQuery);
 	const [state, doFetch] = useFetchAlgolia(initialQuery);
+	const { isError, isLoading } = state;
 
 	return (
 		<>
@@ -25,7 +25,7 @@ function FetchApp() {
 				<button type="submit">Search</button>
 			</form>
 
-			<LoadDataDefault {...state}>
+			<LoadDataDefault isError={isError} isLoading={isLoading}>
 				<ul>
 					{state.data?.hits.map((item) => (
 						<li key={item.objectID}>
