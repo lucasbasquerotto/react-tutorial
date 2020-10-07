@@ -27,7 +27,7 @@ declare module '@material-ui/core/styles/createPalette' {
 	}
 }
 
-export const createMyTheme = (options: ThemeOptions) =>
+export const createMyThemeBase = (options: ThemeOptions) =>
 	createMuiTheme({
 		...options,
 		palette: {
@@ -51,3 +51,17 @@ export const ThemeColor = {
 	DEFAULT: 'default' as PropTypes.Color,
 	NEUTRAL: 'neutral' as PropTypes.Color,
 };
+
+export const createMyTheme = (dark: boolean) =>
+	createMyThemeBase({
+		palette: {
+			type: dark ? 'dark' : 'light',
+			primary: {
+				main: dark ? '#eeeeee' : '#616161',
+			},
+			secondary: {
+				main: dark ? '#4caf50' : '#cddc39',
+				dark: dark ? '#cddc39' : '#4caf50',
+			},
+		},
+	});

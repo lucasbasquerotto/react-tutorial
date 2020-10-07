@@ -38,6 +38,16 @@ import logo from './logo.svg';
 
 // const formattedMessage = intl.formatMessage(message, {username: 'Shanika'});
 
+const MyTime = ({ date }: { date: Date }) => (
+	<FormattedTime
+		value={date}
+		hour="numeric"
+		minute="numeric"
+		timeZoneName="long"
+		timeZone="UTC"
+	/>
+);
+
 const App: FunctionComponent<{ date: number }> = ({ date }) => (
 	<div className="App">
 		<header className="App-header">
@@ -104,13 +114,7 @@ const App: FunctionComponent<{ date: number }> = ({ date }) => (
 				values={{ amount: 3 }}
 			/>
 			<br />
-			<FormattedTime
-				value={new Date()}
-				hour="numeric"
-				minute="numeric"
-				second="numeric"
-				timeZoneName="long"
-			/>
+			<MyTime date={new Date(date)} />
 		</header>
 	</div>
 );

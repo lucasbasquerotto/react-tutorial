@@ -30,7 +30,7 @@ function useDataApi<S, T, E>(
 				if (!didCancel) {
 					dispatch({ type: 'FETCH_SUCCESS', payload });
 				}
-			} catch (e: unknown) {
+			} catch (e) {
 				const error = convertError(e);
 
 				if (!didCancel) {

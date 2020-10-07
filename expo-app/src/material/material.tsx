@@ -47,22 +47,9 @@ export function MaterialUiApp() {
 	const finalDarkMode = darkMode ?? prefersDarkMode;
 	const { cssCard } = useMaterialUiAppStyle();
 
-	const theme = React.useMemo(
-		() =>
-			createMyTheme({
-				palette: {
-					type: finalDarkMode ? 'dark' : 'light',
-					primary: {
-						main: finalDarkMode ? '#eeeeee' : '#616161',
-					},
-					secondary: {
-						main: finalDarkMode ? '#4caf50' : '#cddc39',
-						dark: finalDarkMode ? '#cddc39' : '#4caf50',
-					},
-				},
-			}),
-		[finalDarkMode],
-	);
+	const theme = React.useMemo(() => createMyTheme(finalDarkMode), [
+		finalDarkMode,
+	]);
 
 	return (
 		<StylesProvider injectFirst>

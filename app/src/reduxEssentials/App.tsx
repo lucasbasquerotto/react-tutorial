@@ -1,6 +1,5 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import './App.css';
 import store from './app/store';
 import { Counter } from './features/counter/Counter';
 import logo from './logo.svg';

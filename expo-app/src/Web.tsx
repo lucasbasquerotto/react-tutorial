@@ -4,17 +4,13 @@
 /** @jsx jsx */
 // https://reactjs.org/tutorial/tutorial.html
 import { jsx } from '@emotion/core';
-import { config } from '@fortawesome/fontawesome-svg-core';
-import '@fortawesome/fontawesome-svg-core/styles.css';
 import type { FunctionComponent, ReactNode } from 'react';
 import React, { useEffect, useState } from 'react';
 import ContextApp from './context/app';
 import { EmotionApp } from './emotion/emotion';
 import { MyContainer } from './emotion/test';
 import { FetchApp } from './fetch';
-import './index.css';
 import { IntlApp } from './intl';
-import { JssApp } from './jss/jss';
 import { LinkifyApp } from './linkify/linkify';
 import { MaterialUiApp } from './material/material';
 import { NativeApp } from './native/App';
@@ -22,8 +18,6 @@ import Portal from './portal/portal';
 import { ReduxApp } from './reduxEssentials/App';
 import { MouseTracker } from './renderProps/index';
 import type { Obj } from './types';
-
-config.autoAddCss = false;
 
 //////////////////////////////////////////////////////////////////////////
 ////////////////////////////////// CLOCK /////////////////////////////////
@@ -42,7 +36,7 @@ const Clock = () => {
 	return (
 		<React.Fragment>
 			<h1>Hello, world!</h1>
-			<h2>It is {state.date.toLocaleTimeString()}.</h2>
+			<h2 suppressHydrationWarning>It is {state.date.toLocaleTimeString()}.</h2>
 		</React.Fragment>
 	);
 };
@@ -597,9 +591,6 @@ const WebApp = () => (
 			</div>
 			<div className="redux-counter">
 				<ReduxApp />
-			</div>
-			<div className="jss">
-				<JssApp />
 			</div>
 			<div className="emotion">
 				<EmotionApp />
