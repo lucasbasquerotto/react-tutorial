@@ -8,13 +8,13 @@
 		"eject": "expo eject",
 		"lint": "eslint ./src --ext .js,.jsx,.ts,.tsx",
 		"analyze": "source-map-explorer 'web-build/static/js/*.js' --html tmp/analyze.html",
+		"analyze-next": "source-map-explorer 'out/_next/static/chunks/*.js' --html tmp/analyze.html",
 		"pages": "INTERNAL_STATUS_PORT=19000 gatsby develop --host 0.0.0.0 --port 4000 --https --key-file ./ssl/localhost.key --cert-file ./ssl/localhost.crt --ca-file ./ssl/ca.pem",
 		"serve": "gatsby serve --host 0.0.0.0 --port 4000",
 		"static": "gatsby build",
 		"build": "next build",
 		"dev": "next --hostname 0.0.0.0 --port 4000",
 		"dev2": " HOST=0.0.0.0 PORT=4000 node server/server.js",
-		"next-build": "next build",
 		"next-start": "next start --hostname 0.0.0.0 --port 4000"
 	},
 	"dependencies": {
